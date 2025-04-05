@@ -28,6 +28,7 @@ data = PackedVector3Array(0, 0.5, 0.5, 1.5, -0.5, 0.5, -1.5, -0.5, 0.5, 0, 0.5, 
 
 [node name="Player" parent="." instance=ExtResource("1_t8k4y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.43871, 1.3167, 0)
+coyote_time_length_ms = 100.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-3.09086e-08, 0.707107, -0.707107, 3.09086e-08, 0.707107, 0.707107, 1, 0, -4.37114e-08, 2.44475, 5.85689, 0)

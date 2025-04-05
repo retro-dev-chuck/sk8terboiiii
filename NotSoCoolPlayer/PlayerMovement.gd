@@ -12,6 +12,11 @@ class_name PlayerMovement extends CharacterBody3D
 var input_dir: Vector2 = Vector2.ZERO
 var direction: Vector3 = Vector3.ZERO
 
+@export var coyote_time_length_ms: float = 300.0
+var has_jump: bool = false
+var was_grounded: bool = false
+var ground_leave_time_start: float
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -24,20 +29,29 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Quit"):
 		get_tree().quit()
-	
-	if not is_on_floor():
+		
+	if not has_jump and is_on_floor():
+		has_jump = true
+		
+	if has_jump and Input.is_action_just_pressed("Jump") and _is_valid_time_to_jump():
+		velocity.y = jump_velocity
+		has_jump = false
+	else:
+		ground_leave_time_start = Time.get_ticks_msec()
 		velocity += get_gravity() * delta
 
 	input_dir = Input.get_vector("Left", "Right", "Up", "Down")
 	
 	_handle_ground_movement(delta, velocity)
-
+	was_grounded = is_on_floor()
 	move_and_slide()
 
+func _is_valid_time_to_jump() -> bool:
+	var current_time: float = Time.get_ticks_msec()
+	var time_passed_since_last_grounded: float = current_time - ground_leave_time_start
+	return time_passed_since_last_grounded <= coyote_time_length_ms
+
 func _handle_ground_movement(delta: float, vel: Vector3) -> void:
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		velocity.y = jump_velocity
-		
 	var acceleration: float = speed
 	if Input.is_action_pressed("Sprint"):
 		acceleration = sprint_speed
