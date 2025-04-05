@@ -9,6 +9,8 @@ radius = 0.7
 
 [node name="Torch" type="RigidBody3D"]
 collision_layer = 3
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0.9, 0)
 
 [node name="Torch_Visual" parent="." instance=ExtResource("1_ecors")]
 
