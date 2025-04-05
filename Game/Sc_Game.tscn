@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6nwq01uxjmcb"]
+[gd_scene load_steps=7 format=3 uid="uid://b6nwq01uxjmcb"]
 
 [ext_resource type="PackedScene" uid="uid://bwmepum2xna3u" path="res://NotSoCoolPlayer/Pre_Player.tscn" id="1_t8k4y"]
 [ext_resource type="PackedScene" uid="uid://eryyrtobxw8g" path="res://Map/Walls.tscn" id="2_pa8ys"]
+[ext_resource type="PackedScene" uid="uid://dfae8oexp6jvk" path="res://Map/TopPart.glb" id="3_ekh0v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t8k4y"]
 size = Vector3(10, 0.1, 10)
 
 [sub_resource type="BoxMesh" id="BoxMesh_t8k4y"]
-size = Vector3(23, 0.1, 10)
+size = Vector3(10, 0.1, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pa8ys"]
 albedo_color = Color(0.370364, 0.370364, 0.370364, 1)
@@ -35,3 +36,42 @@ surface_material_override/0 = SubResource("StandardMaterial3D_pa8ys")
 
 [node name="Walls" parent="." instance=ExtResource("2_pa8ys")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0)
+
+[node name="TestGround2" type="StaticBody3D" parent="."]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 0.5, 0, -3, 9.91509)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestGround2"]
+shape = SubResource("BoxShape3D_t8k4y")
+
+[node name="TestGround" type="MeshInstance3D" parent="TestGround2"]
+mesh = SubResource("BoxMesh_t8k4y")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_pa8ys")
+
+[node name="TestGround3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -8, -5, 9.91509)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestGround3"]
+shape = SubResource("BoxShape3D_t8k4y")
+
+[node name="TestGround" type="MeshInstance3D" parent="TestGround3"]
+mesh = SubResource("BoxMesh_t8k4y")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_pa8ys")
+
+[node name="TestGround4" type="StaticBody3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.5, -11, -5, 2.91509)
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestGround4"]
+shape = SubResource("BoxShape3D_t8k4y")
+
+[node name="TestGround" type="MeshInstance3D" parent="TestGround4"]
+mesh = SubResource("BoxMesh_t8k4y")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_pa8ys")
+
+[node name="TopPart2" parent="." instance=ExtResource("3_ekh0v")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)

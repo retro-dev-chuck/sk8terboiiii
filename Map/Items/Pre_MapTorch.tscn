@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://6sdmi3h2j3tb"]
+
+[ext_resource type="Script" uid="uid://bn6o6vg4rtbog" path="res://Map/Items/MapTorch.gd" id="1_8wdwa"]
+[ext_resource type="PackedScene" uid="uid://bukftnggqeyrp" path="res://Map/Pre_Torch_Visual.tscn" id="2_iasmb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8wdwa"]
+size = Vector3(1, 1.25781, 1)
+
+[node name="MapTorch" type="Node3D"]
+script = ExtResource("1_8wdwa")
+metadata/_custom_type_script = "uid://bn6o6vg4rtbog"
+
+[node name="Torch_Visual" parent="." instance=ExtResource("2_iasmb")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13032, 0)
+light_color = Color(1, 0.752941, 0, 1)
+light_energy = 0.7
+omni_attenuation = 0.7
+
+[node name="Interactable" type="Area3D" parent="."]
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.625003, 0)
+shape = SubResource("BoxShape3D_8wdwa")

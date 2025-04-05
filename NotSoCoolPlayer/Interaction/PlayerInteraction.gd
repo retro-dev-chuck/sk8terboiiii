@@ -1,0 +1,1 @@
+class_name PlayerInteraction extends ShapeCast3D
