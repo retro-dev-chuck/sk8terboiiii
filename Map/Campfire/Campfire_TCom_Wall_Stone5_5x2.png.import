@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvl12pds1ukqn"
-path.s3tc="res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex"
+uid="uid://dtof83htnmlxq"
+path.s3tc="res://.godot/imported/Campfire_TCom_Wall_Stone5_5x2.png-12a6b9ae76482721a5986b51832d60dc.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "712c4954e1ab06a17e7e1dcd7feffc3d"
+}
 
 [deps]
 
-source_file="res://icon.svg"
-dest_files=["res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex"]
+source_file="res://Map/Campfire/Campfire_TCom_Wall_Stone5_5x2.png"
+dest_files=["res://.godot/imported/Campfire_TCom_Wall_Stone5_5x2.png-12a6b9ae76482721a5986b51832d60dc.s3tc.ctex"]
 
 [params]
 
@@ -33,6 +36,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=0
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

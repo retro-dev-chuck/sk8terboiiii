@@ -25,7 +25,7 @@ metadata/_custom_type_script = "uid://bejhfqa7p1d4i"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Torch_Visual"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19733, 0)
-light_color = Color(1, 0.466667, 0, 1)
+light_color = Color(1, 0.752941, 0, 1)
 light_energy = 0.7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
