@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwmepum2xna3u"]
+[gd_scene load_steps=13 format=3 uid="uid://bwmepum2xna3u"]
 
 [ext_resource type="Script" uid="uid://dovlpcqil45w8" path="res://NotSoCoolPlayer/PlayerMovement.gd" id="1_e6h3x"]
-[ext_resource type="Script" uid="uid://c6yllm45ptqnq" path="res://NotSoCoolPlayer/Interaction/TorchHandler.gd" id="2_20335"]
+[ext_resource type="Script" uid="uid://c6yllm45ptqnq" path="res://NotSoCoolPlayer/Interaction/HandSlotHandler.gd" id="2_20335"]
 [ext_resource type="PackedScene" uid="uid://6lf0av5d2gda" path="res://NotSoCoolPlayer/Torch/Pre_PlayerTorch.tscn" id="2_sssf0"]
 [ext_resource type="Script" uid="uid://dm3boenbk7ttj" path="res://NotSoCoolPlayer/Interaction/PlayerInteraction.gd" id="2_xa012"]
+[ext_resource type="Script" uid="uid://c452pj1ew0q63" path="res://NotSoCoolPlayer/Throw/ItemThrow.gd" id="3_doq3x"]
+[ext_resource type="PackedScene" uid="uid://c0lc0qmibeump" path="res://NotSoCoolPlayer/Torch/Pre_Throwable_Torch.tscn" id="4_bf3la"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e6h3x"]
 radius = 0.3
@@ -37,13 +39,21 @@ pivot = NodePath("CameraOrigin")
 sensitivity = 0.45
 metadata/_custom_type_script = "uid://dovlpcqil45w8"
 
-[node name="TorchHandler" type="Node3D" parent="." node_paths=PackedStringArray("interaction_right", "interaction_left", "torch_right", "torch_left")]
+[node name="HandSlotHandler" type="Node3D" parent="." node_paths=PackedStringArray("item_throw", "interaction_right", "interaction_left", "torch_right", "torch_left")]
 script = ExtResource("2_20335")
+item_throw = NodePath("../ItemThrow")
 interaction_right = NodePath("../CameraOrigin/Interaction_Right")
 interaction_left = NodePath("../CameraOrigin/Interaction_Left")
 torch_right = NodePath("../Torch_Right")
 torch_left = NodePath("../Torch_Left")
 metadata/_custom_type_script = "uid://c6yllm45ptqnq"
+
+[node name="ItemThrow" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("3_doq3x")
+player = NodePath("..")
+throw_force = 12.0
+sc_torch = ExtResource("4_bf3la")
+metadata/_custom_type_script = "uid://c452pj1ew0q63"
 
 [node name="GroundCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.674715, 0)
@@ -76,24 +86,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 cull_mask = 1048573
 current = true
 
-[node name="Interaction_Right" type="ShapeCast3D" parent="CameraOrigin"]
+[node name="Interaction_Right" type="ShapeCast3D" parent="CameraOrigin" node_paths=PackedStringArray("hand_slot_handler")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)
 shape = SubResource("CapsuleShape3D_20335")
 collision_mask = 4
 collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("2_xa012")
-action = "Interact_Right"
+hand_slot_handler = NodePath("../../HandSlotHandler")
+side = 2
 metadata/_custom_type_script = "uid://dm3boenbk7ttj"
 
-[node name="Interaction_Left" type="ShapeCast3D" parent="CameraOrigin"]
+[node name="Interaction_Left" type="ShapeCast3D" parent="CameraOrigin" node_paths=PackedStringArray("hand_slot_handler")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)
 shape = SubResource("CapsuleShape3D_20335")
 collision_mask = 4
 collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("2_xa012")
-action = "Interact_Left"
+hand_slot_handler = NodePath("../../HandSlotHandler")
+side = 1
 metadata/_custom_type_script = "uid://dm3boenbk7ttj"
 
 [node name="Torch_Right" parent="." instance=ExtResource("2_sssf0")]

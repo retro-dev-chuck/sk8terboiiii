@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0lc0qmibeump"]
+[gd_scene load_steps=5 format=3 uid="uid://c0lc0qmibeump"]
 
 [ext_resource type="PackedScene" uid="uid://n0jqqsxg5a3d" path="res://NotSoCoolPlayer/Torch/Pre_Torch_Visual.tscn" id="1_ecors"]
 [ext_resource type="Shape3D" uid="uid://dd6u31miq01x3" path="res://NotSoCoolPlayer/Torch/Torch_collision.tres" id="2_oi3tb"]
+[ext_resource type="Script" uid="uid://c8wspo72qo5ys" path="res://Map/Interactable/Interactable.gd" id="3_oi3tb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_his7d"]
+radius = 0.7
 
 [node name="Torch" type="RigidBody3D"]
+collision_layer = 3
 
 [node name="Torch_Visual" parent="." instance=ExtResource("1_ecors")]
 
@@ -14,3 +19,15 @@ light_energy = 0.7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = ExtResource("2_oi3tb")
+
+[node name="Interactable" type="Area3D" parent="." node_paths=PackedStringArray("free_parent")]
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("3_oi3tb")
+type = 1
+free_parent = NodePath("..")
+metadata/_custom_type_script = "uid://c8wspo72qo5ys"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.667761, 0)
+shape = SubResource("SphereShape3D_his7d")

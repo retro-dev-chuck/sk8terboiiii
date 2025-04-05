@@ -1,5 +1,7 @@
 class_name PlayerTorch extends Node3D
 
+signal on_expire()
+
 @export var fresh_lifetime: float = 20.0
 var lifetime: float = 20.0
 var is_live: bool = false
@@ -19,6 +21,7 @@ func _extinguish() -> void:
 	is_live = false
 	##todo: play vfx, sfx here
 	## create empty throw on ground
+	on_expire.emit()
 	visible = false
 
 func refresh() -> void:

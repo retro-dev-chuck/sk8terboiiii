@@ -10,7 +10,6 @@ class_name PlayerMovement extends CharacterBody3D
 @export var sensitivity: float = 0.5
 
 var input_dir: Vector2 = Vector2.ZERO
-var direction: Vector3 = Vector3.ZERO
 
 @export var coyote_time_length_ms: float = 300.0
 var has_jump: bool = false
@@ -42,7 +41,7 @@ func _physics_process(delta: float) -> void:
 
 	input_dir = Input.get_vector("Left", "Right", "Up", "Down")
 	
-	_handle_ground_movement(delta, velocity)
+	_handle_ground_movement()
 	was_grounded = is_on_floor()
 	move_and_slide()
 
@@ -51,7 +50,7 @@ func _is_valid_time_to_jump() -> bool:
 	var time_passed_since_last_grounded: float = current_time - ground_leave_time_start
 	return time_passed_since_last_grounded <= coyote_time_length_ms
 
-func _handle_ground_movement(delta: float, vel: Vector3) -> void:
+func _handle_ground_movement() -> void:
 	var acceleration: float = speed
 	if Input.is_action_pressed("Sprint"):
 		acceleration = sprint_speed

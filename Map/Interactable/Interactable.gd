@@ -8,3 +8,6 @@ func interact() -> Enums.ItemType:
 
 func picked_up() -> void:
 	free_parent.free()
+	
+func lifetime() -> float:
+	return -1
