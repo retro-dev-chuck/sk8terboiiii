@@ -20,7 +20,7 @@ func _handle_right_interaction(type: Enums.ItemType, interactable: Interactable)
 		if torch_right.is_live:
 			##should not end here, instead should throw torch
 			return
-		torch_right.refresh()
+		torch_right.refresh(interactable.get_lifetime())
 		interactable.picked_up()
 		is_right_full = true
 	
@@ -29,7 +29,7 @@ func _handle_left_interaction(type: Enums.ItemType, interactable: Interactable) 
 		if torch_left.is_live:
 			##should not end here, instead should throw torch
 			return
-		torch_left.refresh()
+		torch_left.refresh(interactable.get_lifetime())
 		interactable.picked_up()
 		is_left_full = true
 
@@ -51,9 +51,9 @@ func throw_item(side: Enums.Hand) -> void:
 	if side == Enums.Hand.Left:
 		is_left_full = false
 		torch_left._extinguish()
-		item_throw.throw_torch(torch_left.global_position)
+		item_throw.throw_torch(torch_left.global_position, torch_left.time_left())
 		
 	if side == Enums.Hand.Right:
 		is_right_full = false
 		torch_right._extinguish()
-		item_throw.throw_torch(torch_right.global_position)
+		item_throw.throw_torch(torch_right.global_position, torch_left.time_left())

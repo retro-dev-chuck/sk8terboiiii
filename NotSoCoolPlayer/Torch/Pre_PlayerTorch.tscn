@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://6lf0av5d2gda"]
+[gd_scene load_steps=4 format=3 uid="uid://6lf0av5d2gda"]
 
 [ext_resource type="Script" uid="uid://bop7p5jmv4sou" path="res://NotSoCoolPlayer/Torch/PlayerTorch.gd" id="1_ij2lc"]
 [ext_resource type="PackedScene" uid="uid://n0jqqsxg5a3d" path="res://NotSoCoolPlayer/Torch/Pre_Torch_Visual.tscn" id="2_sad5v"]
+[ext_resource type="PackedScene" uid="uid://d4ayenubbmoji" path="res://NotSoCoolPlayer/Lifetime/Pre_Lifetime.tscn" id="3_sad5v"]
 
-[node name="Torch" type="Node3D"]
+[node name="Torch" type="Node3D" node_paths=PackedStringArray("lifetime")]
 script = ExtResource("1_ij2lc")
+lifetime = NodePath("Lifetime")
 metadata/_custom_type_script = "uid://bop7p5jmv4sou"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
@@ -16,3 +18,5 @@ omni_attenuation = 0.7
 
 [node name="Torch_Visual" parent="." instance=ExtResource("2_sad5v")]
 transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0, 0)
+
+[node name="Lifetime" parent="." instance=ExtResource("3_sad5v")]

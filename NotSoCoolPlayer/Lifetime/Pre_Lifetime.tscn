@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4ayenubbmoji"]
+
+[ext_resource type="Script" uid="uid://dkshr5jsj3x6v" path="res://NotSoCoolPlayer/Lifetime/Lifetime.gd" id="1_y0wxo"]
+
+[node name="Lifetime" type="Node3D" node_paths=PackedStringArray("timer")]
+script = ExtResource("1_y0wxo")
+timer = NodePath("Timer")
+metadata/_custom_type_script = "uid://dkshr5jsj3x6v"
+
+[node name="Timer" type="Timer" parent="."]
