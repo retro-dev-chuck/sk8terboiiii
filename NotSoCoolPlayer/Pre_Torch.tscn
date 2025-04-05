@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvs8dhdt6tp3h"]
+
+[ext_resource type="Script" uid="uid://bop7p5jmv4sou" path="res://NotSoCoolPlayer/Torch.gd" id="1_g6ps8"]
+
+[node name="Torch" type="OmniLight3D"]
+light_color = Color(0.967501, 0.72261, 1.54018e-06, 1)
+light_energy = 0.75
+omni_attenuation = 0.7
+script = ExtResource("1_g6ps8")
+metadata/_custom_type_script = "uid://bop7p5jmv4sou"
