@@ -1,31 +1,51 @@
-[gd_scene load_steps=3 format=3 uid="uid://qerxdbcr3bnl"]
+[gd_scene load_steps=7 format=3 uid="uid://qerxdbcr3bnl"]
 
 [ext_resource type="PackedScene" uid="uid://bpy27poqwfjpd" path="res://Map/Walls.glb" id="1_la5gv"]
+[ext_resource type="Texture2D" uid="uid://cko0yfrfelf1g" path="res://Environment/Sky.png" id="2_eaqfd"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_l6t0x"]
+panorama = ExtResource("2_eaqfd")
+
+[sub_resource type="Sky" id="Sky_fh4u6"]
+sky_material = SubResource("PanoramaSkyMaterial_l6t0x")
+
+[sub_resource type="Environment" id="Environment_o3mjp"]
+background_mode = 2
+sky = SubResource("Sky_fh4u6")
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0.117647, 0.12549, 0.137255, 1)
+fog_light_energy = 0.07
+fog_density = 0.3
+fog_sky_affect = 0.9
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eaqfd"]
 size = Vector3(30, 1000, 3.5)
 
 [node name="Walls2" instance=ExtResource("1_la5gv")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+environment = SubResource("Environment_o3mjp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, 13.25)
 shape = SubResource("BoxShape3D_eaqfd")
 
-[node name="StaticBody3D4" type="StaticBody3D" parent="." index="2"]
+[node name="StaticBody3D4" type="StaticBody3D" parent="." index="3"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, -13.25)
 shape = SubResource("BoxShape3D_eaqfd")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="." index="3"]
+[node name="StaticBody3D2" type="StaticBody3D" parent="." index="4"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" index="0"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.25, 500, 0)
 shape = SubResource("BoxShape3D_eaqfd")
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="." index="4"]
+[node name="StaticBody3D3" type="StaticBody3D" parent="." index="5"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" index="0"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13.25, 500, 0)
