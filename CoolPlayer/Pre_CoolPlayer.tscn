@@ -1,21 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwmepum2xna3u"]
+[gd_scene load_steps=6 format=3 uid="uid://bwmepum2xna3u"]
 
-[ext_resource type="Script" uid="uid://ov8oj00oh1om" path="res://CoolPlayer/CoolPlayer.gd" id="1_e6h3x"]
+[ext_resource type="Script" uid="uid://cl0nol733ky2c" path="res://CoolPlayer/CoolPlayer.gd" id="1_e6h3x"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_kac4w"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_e7ehh"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e6h3x"]
+albedo_color = Color(0.547443, 0.432663, 0.343696, 1)
 
-[node name="CoolPlayer" type="CharacterBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_e7ehh"]
+radius = 0.52
+
+[sub_resource type="SphereMesh" id="SphereMesh_e7ehh"]
+radius = 0.1
+height = 0.2
+
+[node name="CoolPlayer" type="CharacterBody3D" node_paths=PackedStringArray("pivot")]
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
-floor_stop_on_slope = false
 script = ExtResource("1_e6h3x")
-metadata/_custom_type_script = "uid://ov8oj00oh1om"
+pivot = NodePath("CameraOrigin")
+metadata/_custom_type_script = "uid://cl0nol733ky2c"
 
 [node name="Visual" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_kac4w")
+surface_material_override/0 = SubResource("StandardMaterial3D_e6h3x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_e7ehh")
+
+[node name="Eye" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.136939, 0.337231, -0.382866)
+mesh = SubResource("SphereMesh_e7ehh")
+
+[node name="Eye2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0983843, 0.337231, -0.382866)
+mesh = SubResource("SphereMesh_e7ehh")
+
+[node name="CameraOrigin" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.278482, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraOrigin"]
+spring_length = 2.0
+margin = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="CameraOrigin/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
