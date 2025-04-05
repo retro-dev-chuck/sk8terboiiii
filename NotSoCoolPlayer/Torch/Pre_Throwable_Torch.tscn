@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://c0lc0qmibeump"]
 
 [ext_resource type="Script" uid="uid://bejhfqa7p1d4i" path="res://Map/Items/ThrowableTorch.gd" id="1_2f5g1"]
-[ext_resource type="PackedScene" uid="uid://n0jqqsxg5a3d" path="res://NotSoCoolPlayer/Torch/Pre_Torch_Visual.tscn" id="1_ecors"]
 [ext_resource type="PackedScene" uid="uid://d4ayenubbmoji" path="res://NotSoCoolPlayer/Lifetime/Pre_Lifetime.tscn" id="2_2f5g1"]
 [ext_resource type="Shape3D" uid="uid://dd6u31miq01x3" path="res://NotSoCoolPlayer/Torch/Torch_collision.tres" id="2_oi3tb"]
+[ext_resource type="PackedScene" uid="uid://bukftnggqeyrp" path="res://Map/Pre_Torch_Visual.tscn" id="3_2f5g1"]
 [ext_resource type="Script" uid="uid://c8wspo72qo5ys" path="res://Map/Interactable/Interactable.gd" id="3_oi3tb"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_his7d"]
@@ -12,19 +12,19 @@ radius = 0.7
 [node name="Throwable_Torch" type="RigidBody3D" node_paths=PackedStringArray("lifetime", "interactable", "light")]
 collision_layer = 3
 center_of_mass_mode = 1
-center_of_mass = Vector3(0, 0.9, 0)
+center_of_mass = Vector3(0, 0.85, 0)
 script = ExtResource("1_2f5g1")
 lifetime = NodePath("Lifetime")
 interactable = NodePath("Interactable")
-light = NodePath("Torch_Visual/OmniLight3D")
+light = NodePath("Torch_Visual2/OmniLight3D")
 metadata/_custom_type_script = "uid://bejhfqa7p1d4i"
 
 [node name="Lifetime" parent="." instance=ExtResource("2_2f5g1")]
 
-[node name="Torch_Visual" parent="." instance=ExtResource("1_ecors")]
+[node name="Torch_Visual2" parent="." instance=ExtResource("3_2f5g1")]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Torch_Visual"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19733, 0)
+[node name="OmniLight3D" type="OmniLight3D" parent="Torch_Visual2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07078, 0)
 light_color = Color(1, 0.752941, 0, 1)
 light_energy = 0.7
 

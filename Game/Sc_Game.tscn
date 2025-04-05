@@ -1,12 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6nwq01uxjmcb"]
+[gd_scene load_steps=10 format=3 uid="uid://b6nwq01uxjmcb"]
 
 [ext_resource type="PackedScene" uid="uid://bwmepum2xna3u" path="res://NotSoCoolPlayer/Pre_Player.tscn" id="1_t8k4y"]
 [ext_resource type="PackedScene" uid="uid://qerxdbcr3bnl" path="res://Map/Walls.tscn" id="2_pa8ys"]
 [ext_resource type="PackedScene" uid="uid://dfae8oexp6jvk" path="res://Map/TopPart.glb" id="3_ekh0v"]
 [ext_resource type="PackedScene" uid="uid://6sdmi3h2j3tb" path="res://Map/Items/Pre_MapTorch.tscn" id="3_v3iej"]
-[ext_resource type="PackedScene" uid="uid://6lf0av5d2gda" path="res://NotSoCoolPlayer/Torch/Pre_PlayerTorch.tscn" id="5_s8n1p"]
 [ext_resource type="PackedScene" uid="uid://hbt2mewi5ya8" path="res://Map/Campfire/Campfire.glb" id="6_d0pv1"]
-[ext_resource type="PackedScene" uid="uid://hln8646fmpjg" path="res://Environment/Tree.glb" id="7_rw5j3"]
 [ext_resource type="PackedScene" uid="uid://dts7buxkebqnu" path="res://Environment/Foliage.glb" id="8_kgoo8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t8k4y"]
@@ -123,17 +121,8 @@ mesh = SubResource("BoxMesh_t8k4y")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_pa8ys")
 
-[node name="Torch" parent="." instance=ExtResource("5_s8n1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8884, -5.14673, -5.69524)
-
-[node name="Torch2" parent="." instance=ExtResource("5_s8n1p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.87309, -8.0889, -8.82835)
-
 [node name="Campfire2" parent="." instance=ExtResource("6_d0pv1")]
 transform = Transform3D(0.996756, -0.0589367, 0.0548121, 0.0579019, 0.998116, 0.0202805, -0.0559041, -0.0170409, 0.998291, -2.51304, 0.213735, 20.3394)
-
-[node name="Tree2" parent="." instance=ExtResource("7_rw5j3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.57903, -0.0499998, 18.1468)
 
 [node name="Foliage" parent="." instance=ExtResource("8_kgoo8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.83962, -0.0499993, 23.7235)

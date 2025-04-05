@@ -10,14 +10,14 @@ radius = 0.7
 [sub_resource type="Gradient" id="Gradient_43wex"]
 colors = PackedColorArray(1, 0.733333, 0, 1, 1, 0.145098, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_hmqvf"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1wag2"]
 gradient = SubResource("Gradient_43wex")
 
 [sub_resource type="Curve" id="Curve_cgsd4"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.271277, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_v51hm"]
+[sub_resource type="CurveTexture" id="CurveTexture_8uyy8"]
 curve = SubResource("Curve_cgsd4")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hrcmm"]
@@ -34,10 +34,10 @@ linear_accel_min = 0.999998
 linear_accel_max = 0.999998
 scale_min = 2.0
 scale_max = 2.0
-scale_curve = SubResource("CurveTexture_v51hm")
-color_ramp = SubResource("GradientTexture1D_hmqvf")
+scale_curve = SubResource("CurveTexture_8uyy8")
+color_ramp = SubResource("GradientTexture1D_1wag2")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nogtt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43wex"]
 transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
@@ -49,7 +49,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_a0llo"]
-material = SubResource("StandardMaterial3D_nogtt")
+material = SubResource("StandardMaterial3D_43wex")
 
 [sub_resource type="Gradient" id="Gradient_8uyy8"]
 offsets = PackedFloat32Array(0, 0.698895, 1)
@@ -108,6 +108,7 @@ shape = SubResource("SphereShape3D_8uyy8")
 [node name="Fire" type="GPUParticles3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375901, -0.0487095)
 amount = 16
+preprocess = 2.0
 process_material = SubResource("ParticleProcessMaterial_hrcmm")
 draw_pass_1 = SubResource("QuadMesh_a0llo")
 
@@ -115,6 +116,7 @@ draw_pass_1 = SubResource("QuadMesh_a0llo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375901, -0.0487095)
 amount = 16
 lifetime = 2.0
+preprocess = 4.0
 speed_scale = 0.66
 process_material = SubResource("ParticleProcessMaterial_v51hm")
 draw_pass_1 = SubResource("QuadMesh_nogtt")
