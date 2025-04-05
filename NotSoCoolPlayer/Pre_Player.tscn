@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwmepum2xna3u"]
+[gd_scene load_steps=11 format=3 uid="uid://bwmepum2xna3u"]
 
 [ext_resource type="Script" uid="uid://dovlpcqil45w8" path="res://NotSoCoolPlayer/PlayerMovement.gd" id="1_e6h3x"]
+[ext_resource type="Script" uid="uid://c6yllm45ptqnq" path="res://NotSoCoolPlayer/Interaction/TorchHandler.gd" id="2_20335"]
 [ext_resource type="PackedScene" uid="uid://6lf0av5d2gda" path="res://NotSoCoolPlayer/Torch/Pre_PlayerTorch.tscn" id="2_sssf0"]
+[ext_resource type="Script" uid="uid://dm3boenbk7ttj" path="res://NotSoCoolPlayer/Interaction/PlayerInteraction.gd" id="2_xa012"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e6h3x"]
 radius = 0.3
@@ -18,6 +20,9 @@ radius = 0.52
 radius = 0.1
 height = 0.2
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_20335"]
+height = 3.0
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pivot")]
 collision_layer = 2
 collision_mask = 3
@@ -31,6 +36,14 @@ jump_velocity = 10.0
 pivot = NodePath("CameraOrigin")
 sensitivity = 0.45
 metadata/_custom_type_script = "uid://dovlpcqil45w8"
+
+[node name="TorchHandler" type="Node3D" parent="." node_paths=PackedStringArray("interaction_right", "interaction_left", "torch_right", "torch_left")]
+script = ExtResource("2_20335")
+interaction_right = NodePath("../CameraOrigin/Interaction_Right")
+interaction_left = NodePath("../CameraOrigin/Interaction_Left")
+torch_right = NodePath("../Torch_Right")
+torch_left = NodePath("../Torch_Left")
+metadata/_custom_type_script = "uid://c6yllm45ptqnq"
 
 [node name="GroundCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.674715, 0)
@@ -62,5 +75,30 @@ margin = 0.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 current = true
 
-[node name="Torch" parent="." instance=ExtResource("2_sssf0")]
+[node name="Interaction_Right" type="ShapeCast3D" parent="CameraOrigin"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)
+shape = SubResource("CapsuleShape3D_20335")
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("2_xa012")
+action = "Interact_Right"
+metadata/_custom_type_script = "uid://dm3boenbk7ttj"
+
+[node name="Interaction_Left" type="ShapeCast3D" parent="CameraOrigin"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)
+shape = SubResource("CapsuleShape3D_20335")
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("2_xa012")
+action = "Interact_Left"
+metadata/_custom_type_script = "uid://dm3boenbk7ttj"
+
+[node name="Torch_Right" parent="." instance=ExtResource("2_sssf0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.462751, -0.243101, -0.568506)
+visible = false
+
+[node name="Torch_Left" parent="." instance=ExtResource("2_sssf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.770803, -0.243101, -0.568506)
+visible = false

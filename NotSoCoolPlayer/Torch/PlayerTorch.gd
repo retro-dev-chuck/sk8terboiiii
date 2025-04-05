@@ -1,5 +1,27 @@
 class_name PlayerTorch extends Node3D
 
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Toggle_Torch"):
-		visible = !visible
+@export var fresh_lifetime: float = 20.0
+var lifetime: float = 20.0
+var is_live: bool = false
+
+func _ready() -> void:
+	lifetime = 0
+	is_live = false
+	
+func _process(delta: float) -> void:
+	if not is_live:
+		return
+	lifetime -= delta
+	if lifetime <= 0:
+		_extinguish()
+		
+func _extinguish() -> void:
+	is_live = false
+	##todo: play vfx, sfx here
+	## create empty throw on ground
+	visible = false
+
+func refresh() -> void:
+	lifetime = fresh_lifetime
+	is_live = true
+	visible = true
