@@ -23,8 +23,14 @@ sprint_speed = 6.5
 jump_velocity = 6.5
 coyote_time_length_ms = 100.0
 
+[node name="Walls" parent="." instance=ExtResource("2_pa8ys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0)
+
+[node name="TopPart" parent="." instance=ExtResource("3_ekh0v")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
 [node name="TestGround" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.9151)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 19.9151)
 collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestGround"]
@@ -34,9 +40,6 @@ shape = SubResource("BoxShape3D_t8k4y")
 mesh = SubResource("BoxMesh_t8k4y")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_pa8ys")
-
-[node name="Walls" parent="." instance=ExtResource("2_pa8ys")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0)
 
 [node name="TestGround2" type="StaticBody3D" parent="."]
 transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 0.5, 0, -3, 9.91509)
@@ -79,6 +82,3 @@ shape = SubResource("BoxShape3D_t8k4y")
 mesh = SubResource("BoxMesh_t8k4y")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_pa8ys")
-
-[node name="TopPart2" parent="." instance=ExtResource("3_ekh0v")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)

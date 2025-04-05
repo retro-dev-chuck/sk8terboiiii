@@ -17,6 +17,7 @@ metadata/_custom_type_script = "uid://bn6o6vg4rtbog"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13032, 0)
 light_color = Color(1, 0.752941, 0, 1)
 light_energy = 0.7
+omni_range = 7.5
 omni_attenuation = 0.7
 
 [node name="Interactable" type="Area3D" parent="." node_paths=PackedStringArray("free_parent")]
