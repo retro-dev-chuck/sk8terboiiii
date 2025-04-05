@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bukftnggqeyrp"]
+
+[ext_resource type="PackedScene" uid="uid://p8wowg8e6wrt" path="res://NotSoCoolPlayer/Torch/Torch.glb" id="1_b40en"]
+
+[node name="Torch_Visual" instance=ExtResource("1_b40en")]

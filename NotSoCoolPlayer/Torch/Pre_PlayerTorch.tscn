@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://6lf0av5d2gda"]
+
+[ext_resource type="Script" uid="uid://bop7p5jmv4sou" path="res://NotSoCoolPlayer/Torch/PlayerTorch.gd" id="1_ij2lc"]
+[ext_resource type="PackedScene" uid="uid://n0jqqsxg5a3d" path="res://NotSoCoolPlayer/Torch/Pre_Torch_Visual.tscn" id="2_sad5v"]
+
+[node name="Torch" type="Node3D"]
+script = ExtResource("1_ij2lc")
+metadata/_custom_type_script = "uid://bop7p5jmv4sou"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.688357, 0)
+light_color = Color(1, 0.752941, 0, 1)
+light_energy = 0.7
+shadow_enabled = true
+omni_attenuation = 0.7
+
+[node name="Torch_Visual" parent="." instance=ExtResource("2_sad5v")]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0, 0)

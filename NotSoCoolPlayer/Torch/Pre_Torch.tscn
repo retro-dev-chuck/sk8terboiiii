@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0lc0qmibeump"]
+
+[ext_resource type="PackedScene" uid="uid://n0jqqsxg5a3d" path="res://NotSoCoolPlayer/Torch/Pre_Torch_Visual.tscn" id="1_wvkdw"]
+[ext_resource type="Shape3D" uid="uid://dd6u31miq01x3" path="res://NotSoCoolPlayer/Torch/Torch_collision.tres" id="2_hw1vr"]
+
+[node name="Torch" type="RigidBody3D"]
+
+[node name="Torch_Visual" parent="." instance=ExtResource("1_wvkdw")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Torch_Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19733, 0)
+light_color = Color(1, 0.466667, 0, 1)
+light_energy = 0.7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = ExtResource("2_hw1vr")

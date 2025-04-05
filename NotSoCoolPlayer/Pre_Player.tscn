@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bwmepum2xna3u"]
 
 [ext_resource type="Script" uid="uid://dovlpcqil45w8" path="res://NotSoCoolPlayer/PlayerMovement.gd" id="1_e6h3x"]
-[ext_resource type="PackedScene" uid="uid://bvs8dhdt6tp3h" path="res://NotSoCoolPlayer/Pre_Torch.tscn" id="2_sssf0"]
+[ext_resource type="PackedScene" uid="uid://6lf0av5d2gda" path="res://NotSoCoolPlayer/Torch/Pre_PlayerTorch.tscn" id="2_sssf0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e6h3x"]
 radius = 0.3
@@ -32,9 +32,6 @@ pivot = NodePath("CameraOrigin")
 sensitivity = 0.45
 metadata/_custom_type_script = "uid://dovlpcqil45w8"
 
-[node name="Torch" parent="." instance=ExtResource("2_sssf0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.617932, 0.540753, -0.859763)
-
 [node name="GroundCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.674715, 0)
 shape = SubResource("SphereShape3D_e6h3x")
@@ -64,3 +61,6 @@ margin = 0.5
 [node name="Camera3D" type="Camera3D" parent="CameraOrigin/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 current = true
+
+[node name="Torch" parent="." instance=ExtResource("2_sssf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.462751, -0.243101, -0.568506)
