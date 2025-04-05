@@ -1,0 +1,1 @@
+class_name CoolPlayer extends CharacterBody3D
