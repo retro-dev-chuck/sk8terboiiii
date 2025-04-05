@@ -3,7 +3,6 @@ class_name CoolPlayer extends CharacterBody3D
 @export var max_rotation_y: float = 75
 
 @export var speed: float = 5.0
-@export var slide_steer_speed: float = 1
 @export var jump_velocity: float = 4.5
 
 @export var pivot: Node3D

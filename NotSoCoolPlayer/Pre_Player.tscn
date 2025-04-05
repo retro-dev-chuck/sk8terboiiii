@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bwmepum2xna3u"]
 
-[ext_resource type="Script" uid="uid://cl0nol733ky2c" path="res://CoolPlayer/CoolPlayer.gd" id="1_e6h3x"]
+[ext_resource type="Script" uid="uid://dovlpcqil45w8" path="res://NotSoCoolPlayer/PlayerMovement.gd" id="1_e6h3x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e6h3x"]
 radius = 0.3
@@ -17,18 +17,19 @@ radius = 0.52
 radius = 0.1
 height = 0.2
 
-[node name="CoolPlayer" type="CharacterBody3D" node_paths=PackedStringArray("pivot", "groundcast")]
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("pivot")]
+collision_layer = 2
+collision_mask = 3
 floor_stop_on_slope = false
-floor_max_angle = 0.244346
+floor_snap_length = 0.3
 script = ExtResource("1_e6h3x")
-speed = 10.0
-jump_velocity = 6.0
+max_rotation_y = 80.0
+speed = 8.0
+sprint_speed = 12.0
+jump_velocity = 10.0
 pivot = NodePath("CameraOrigin")
-groundcast = NodePath("GroundCast")
-metadata/_custom_type_script = "uid://cl0nol733ky2c"
+sensitivity = 0.45
+metadata/_custom_type_script = "uid://dovlpcqil45w8"
 
 [node name="GroundCast" type="ShapeCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.674715, 0)
@@ -50,11 +51,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0983843, 0.337231, -0.3828
 mesh = SubResource("SphereMesh_e7ehh")
 
 [node name="CameraOrigin" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.278482, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499751, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraOrigin"]
-spring_length = 2.0
+spring_length = 3.0
 margin = 0.5
 
 [node name="Camera3D" type="Camera3D" parent="CameraOrigin/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+current = true
