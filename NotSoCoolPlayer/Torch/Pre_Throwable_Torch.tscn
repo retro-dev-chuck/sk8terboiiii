@@ -9,7 +9,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_his7d"]
 radius = 0.7
 
-[node name="Throwable_Torch" type="RigidBody3D" node_paths=PackedStringArray("lifetime", "interactable", "light")]
+[node name="Throwable_Torch" type="RigidBody3D" node_paths=PackedStringArray("lifetime", "interactable", "light", "pfx")]
 collision_layer = 3
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0.85, 0)
@@ -17,6 +17,7 @@ script = ExtResource("1_2f5g1")
 lifetime = NodePath("Lifetime")
 interactable = NodePath("Interactable")
 light = NodePath("Torch_Visual2/OmniLight3D")
+pfx = NodePath("Torch_Visual2/Fire")
 metadata/_custom_type_script = "uid://bejhfqa7p1d4i"
 
 [node name="Lifetime" parent="." instance=ExtResource("2_2f5g1")]
@@ -43,3 +44,5 @@ metadata/_custom_type_script = "uid://c8wspo72qo5ys"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.667761, 0)
 shape = SubResource("SphereShape3D_his7d")
+
+[editable path="Torch_Visual2"]

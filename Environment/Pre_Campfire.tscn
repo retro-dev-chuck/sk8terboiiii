@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://8v55anliqytv"]
+[gd_scene load_steps=21 format=3 uid="uid://8v55anliqytv"]
 
 [ext_resource type="PackedScene" uid="uid://hbt2mewi5ya8" path="res://Map/Campfire/Campfire.glb" id="1_cmxit"]
 [ext_resource type="Texture2D" uid="uid://crdbb3sqbguoy" path="res://Map/Campfire/Fire.png" id="2_1wag2"]
 [ext_resource type="Texture2D" uid="uid://b00wb34nlcro2" path="res://Map/Campfire/Smoke.png" id="3_1wag2"]
+[ext_resource type="Script" uid="uid://c8wspo72qo5ys" path="res://Map/Interactable/Interactable.gd" id="4_8uyy8"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8uyy8"]
 radius = 0.7
@@ -94,25 +95,34 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_nogtt"]
 material = SubResource("StandardMaterial3D_hrcmm")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_43wex"]
+radius = 0.8
+
 [node name="Campfire" instance=ExtResource("1_cmxit")]
 
-[node name="Campfire" parent="." index="0"]
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386622, 0)
+light_color = Color(0.960784, 0.443137, 0, 1)
+light_energy = 1.25
+omni_range = 15.0
+
+[node name="Campfire" parent="." index="1"]
 transform = Transform3D(1.05902, 0.228593, 0.0446053, -1.63374e-08, 0.0772714, -1.96987, -0.283765, 0.85312, 0.166469, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.169885, 0)
 shape = SubResource("SphereShape3D_8uyy8")
 
-[node name="Fire" type="GPUParticles3D" parent="." index="2"]
+[node name="Fire" type="GPUParticles3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375901, -0.0487095)
 amount = 16
 preprocess = 2.0
 process_material = SubResource("ParticleProcessMaterial_hrcmm")
 draw_pass_1 = SubResource("QuadMesh_a0llo")
 
-[node name="Smoke" type="GPUParticles3D" parent="." index="3"]
+[node name="Smoke" type="GPUParticles3D" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375901, -0.0487095)
 amount = 16
 lifetime = 2.0
@@ -120,3 +130,15 @@ preprocess = 4.0
 speed_scale = 0.66
 process_material = SubResource("ParticleProcessMaterial_v51hm")
 draw_pass_1 = SubResource("QuadMesh_nogtt")
+
+[node name="Interactable" type="Area3D" parent="." index="5" node_paths=PackedStringArray("free_parent")]
+collision_layer = 4
+collision_mask = 14
+monitoring = false
+script = ExtResource("4_8uyy8")
+type = 2
+free_parent = NodePath("..")
+metadata/_custom_type_script = "uid://c8wspo72qo5ys"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" index="0"]
+shape = SubResource("SphereShape3D_43wex")

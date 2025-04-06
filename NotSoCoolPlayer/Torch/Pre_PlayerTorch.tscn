@@ -4,9 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://d4ayenubbmoji" path="res://NotSoCoolPlayer/Lifetime/Pre_Lifetime.tscn" id="3_sad5v"]
 [ext_resource type="PackedScene" uid="uid://bukftnggqeyrp" path="res://Map/Pre_Torch_Visual.tscn" id="3_vpdva"]
 
-[node name="Torch" type="Node3D" node_paths=PackedStringArray("lifetime")]
+[node name="Torch" type="Node3D" node_paths=PackedStringArray("lifetime", "pfx", "light")]
 script = ExtResource("1_ij2lc")
 lifetime = NodePath("Lifetime")
+pfx = NodePath("Torch_Visual/Fire")
+light = NodePath("OmniLight3D")
 metadata/_custom_type_script = "uid://bop7p5jmv4sou"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
@@ -14,8 +16,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08134, 0)
 light_color = Color(1, 0.752941, 0, 1)
 light_energy = 0.7
 shadow_enabled = true
+omni_range = 7.0
 omni_attenuation = 0.7
 
 [node name="Lifetime" parent="." instance=ExtResource("3_sad5v")]
 
 [node name="Torch_Visual" parent="." instance=ExtResource("3_vpdva")]
+
+[editable path="Torch_Visual"]

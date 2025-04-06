@@ -6,54 +6,59 @@ class_name HandSlotHandler extends Node3D
 @export var torch_right: PlayerTorch
 @export var torch_left: PlayerTorch
 
-var is_left_full: bool = false
-var is_right_full: bool = false
+var left_hand_item: Enums.ItemType = Enums.ItemType.None
+var right_hand_item: Enums.ItemType = Enums.ItemType.None
  
 func _ready() -> void:
 	interaction_right.on_interaction_successful.connect(_handle_right_interaction)
 	interaction_left.on_interaction_successful.connect(_handle_left_interaction)
-	torch_left.on_expire.connect(_on_left_torch_expired)
-	torch_right.on_expire.connect(_on_right_torch_expired)
 	
-func _handle_right_interaction(type: Enums.ItemType, interactable: Interactable) -> void:
+func _handle_right_interaction(interactable: Interactable) -> void:
+	var type: Enums.ItemType = interactable.type
 	if type == Enums.ItemType.Torch:
 		if torch_right.is_live:
 			##should not end here, instead should throw torch
 			return
 		torch_right.refresh(interactable.get_lifetime())
 		interactable.picked_up()
-		is_right_full = true
+		right_hand_item = Enums.ItemType.Torch
+	elif type == Enums.ItemType.Campfire:
+		if right_hand_item == Enums.ItemType.Torch:
+			torch_right.refresh()
+	elif type == Enums.ItemType.ResurrectionTotem:
+		print("r")
 	
-func _handle_left_interaction(type: Enums.ItemType, interactable: Interactable) -> void:
+func _handle_left_interaction(interactable: Interactable) -> void:
+	var type: Enums.ItemType = interactable.type
 	if type == Enums.ItemType.Torch:
 		if torch_left.is_live:
 			##should not end here, instead should throw torch
 			return
 		torch_left.refresh(interactable.get_lifetime())
 		interactable.picked_up()
-		is_left_full = true
+		left_hand_item = Enums.ItemType.Torch
+	elif type == Enums.ItemType.Campfire:
+		if left_hand_item == Enums.ItemType.Torch:
+			torch_left.refresh()
+	elif type == Enums.ItemType.ResurrectionTotem:
+		print("l")
 
-func is_side_full(side: Enums.Hand) -> bool:
+func is_side_empty(side: Enums.Hand) -> bool:
 	if side == Enums.Hand.Left:
-		return is_left_full
+		push_warning("Left hand used", left_hand_item == Enums.ItemType.None)
+		return left_hand_item == Enums.ItemType.None
 	if side == Enums.Hand.Right:
-		return is_right_full
-	push_warning("Hand None?????")
+		push_warning("Right hand used", left_hand_item == Enums.ItemType.None)
+		return right_hand_item == Enums.ItemType.None
+	push_warning("None hand used?", side)
 	return false
 
-func _on_left_torch_expired() -> void:
-	is_left_full = false
-	
-func _on_right_torch_expired() -> void:
-	is_right_full = false
-
 func throw_item(side: Enums.Hand) -> void:
-	if side == Enums.Hand.Left:
-		is_left_full = false
-		torch_left._extinguish()
+	if side == Enums.Hand.Left and left_hand_item == Enums.ItemType.Torch:
+		left_hand_item = Enums.ItemType.None
+		torch_left._hide()
 		item_throw.throw_torch(torch_left.global_position, torch_left.time_left())
-		
-	if side == Enums.Hand.Right:
-		is_right_full = false
-		torch_right._extinguish()
+	elif side == Enums.Hand.Right and right_hand_item == Enums.ItemType.Torch:
+		right_hand_item = Enums.ItemType.None
+		torch_left._hide()
 		item_throw.throw_torch(torch_right.global_position, torch_left.time_left())
