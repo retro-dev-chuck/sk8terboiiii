@@ -4,6 +4,8 @@ class_name DeathTracker extends Node3D
 @export var player: PlayerMovement
 @export var respawn: Respawn
 
+func _ready() -> void:
+	player.on_death_trigger.connect(die)
 
 func _physics_process(_delta: float) -> void:
 	if not player.is_on_floor():

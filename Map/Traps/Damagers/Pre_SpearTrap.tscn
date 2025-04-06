@@ -1,0 +1,171 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6ltgiaqx5d5t"]
+
+[ext_resource type="Script" uid="uid://bcjne4aploy1n" path="res://Map/Traps/Damagers/SpearTrap.gd" id="1_y4tg0"]
+[ext_resource type="PackedScene" uid="uid://cn160voydjgsr" path="res://Map/Traps/Damagers/Spear.glb" id="2_cjs5c"]
+[ext_resource type="Script" uid="uid://v0srvf2gn2w1" path="res://Map/Traps/KillZone.gd" id="3_ka05k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nirnv"]
+size = Vector3(2.07813, 3.13828, 2.06738)
+
+[sub_resource type="Animation" id="Animation_7xic2"]
+resource_name = "activate"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 0.025, 1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lt0r0"]
+resource_name = "deactivate"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 0.01, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sap6h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 0.025, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dtfuq"]
+_data = {
+&"RESET": SubResource("Animation_sap6h"),
+&"activate": SubResource("Animation_7xic2"),
+&"deactivate": SubResource("Animation_lt0r0")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lfmj2"]
+size = Vector3(2.07813, 3.13828, 2.06738)
+
+[node name="SpearTrap" type="Node3D" node_paths=PackedStringArray("killzone")]
+script = ExtResource("1_y4tg0")
+killzone = NodePath("KillZone")
+metadata/_custom_type_script = "uid://bcjne4aploy1n"
+
+[node name="Visuals" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.025, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="SpearVisual" parent="Visuals" instance=ExtResource("2_cjs5c")]
+
+[node name="SpearVisual3" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
+[node name="SpearVisual2" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="SpearVisual10" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="SpearVisual11" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0.5)
+
+[node name="SpearVisual12" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -0.5)
+
+[node name="SpearVisual13" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="SpearVisual14" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0.5)
+
+[node name="SpearVisual15" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -0.5)
+
+[node name="SpearVisual7" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+
+[node name="SpearVisual8" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.5)
+
+[node name="SpearVisual9" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.5)
+
+[node name="SpearVisual4" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+
+[node name="SpearVisual16" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="SpearVisual17" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="SpearVisual18" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="SpearVisual19" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -1)
+
+[node name="SpearVisual20" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -1)
+
+[node name="SpearVisual21" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="SpearVisual22" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="SpearVisual23" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="SpearVisual24" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 1)
+
+[node name="SpearVisual25" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 1)
+
+[node name="SpearVisual5" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
+
+[node name="SpearVisual6" parent="Visuals" instance=ExtResource("2_cjs5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+collision_layer = 32
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41304, 0)
+shape = SubResource("BoxShape3D_nirnv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dtfuq")
+}
+
+[node name="KillZone" type="Area3D" parent="."]
+collision_layer = 32
+collision_mask = 2
+monitorable = false
+script = ExtResource("3_ka05k")
+metadata/_custom_type_script = "uid://v0srvf2gn2w1"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+shape = SubResource("BoxShape3D_lfmj2")

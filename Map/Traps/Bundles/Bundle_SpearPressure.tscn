@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxs2yskqxmf57"]
+
+[ext_resource type="PackedScene" uid="uid://b6ltgiaqx5d5t" path="res://Map/Traps/Damagers/Pre_SpearTrap.tscn" id="1_3a3ja"]
+[ext_resource type="PackedScene" uid="uid://dyp60p37s8m03" path="res://Map/Traps/Triggers/Trap_Trigger_Pressure.tscn" id="2_wtl48"]
+
+[node name="Trap_Spear_Pressure" type="Node3D"]
+
+[node name="SpearTrap" parent="." node_paths=PackedStringArray("trap_trigger") instance=ExtResource("1_3a3ja")]
+trap_trigger = NodePath("../Trap_Trigger_Pressure")
+
+[node name="Trap_Trigger_Pressure" parent="." instance=ExtResource("2_wtl48")]

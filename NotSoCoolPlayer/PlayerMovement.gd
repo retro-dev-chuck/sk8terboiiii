@@ -1,5 +1,7 @@
 class_name PlayerMovement extends CharacterBody3D
 
+signal on_death_trigger()
+
 @export var max_rotation_y: float = 75
 
 @export var speed: float = 5.0
@@ -74,3 +76,7 @@ func _handle_ground_movement() -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, acceleration)
 		velocity.z = move_toward(velocity.z, 0, acceleration)
+
+func trap_death() -> void:
+	if not has_died:
+		on_death_trigger.emit()
