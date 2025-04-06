@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bajusep27dr3r"]
+
+[ext_resource type="PackedScene" uid="uid://c5qw0l5ijkkm8" path="res://Map/Interactable/Pre_Book_Visual.tscn" id="1_ciw73"]
+
+[node name="Tutorial_Book" type="Node3D"]
+
+[node name="Book_Visual" parent="." instance=ExtResource("1_ciw73")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.441892, 0)
+light_color = Color(0.0858312, 0.234492, 0.305464, 1)

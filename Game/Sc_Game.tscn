@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b6nwq01uxjmcb"]
+[gd_scene load_steps=23 format=3 uid="uid://b6nwq01uxjmcb"]
 
 [ext_resource type="Script" uid="uid://bc8q2bpqccab8" path="res://Game/Respawn.gd" id="1_kgoo8"]
 [ext_resource type="PackedScene" uid="uid://bwmepum2xna3u" path="res://NotSoCoolPlayer/Pre_Player.tscn" id="1_t8k4y"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cei01vwmfkx0n" path="res://Map/UI/Pre_StoryCanvas.tscn" id="15_enflg"]
 [ext_resource type="Script" uid="uid://cvjxliomyamki" path="res://Story/Story.gd" id="16_4bmmj"]
 [ext_resource type="PackedScene" uid="uid://bth88nemgou8s" path="res://Story/Pre_StoryTrigger.tscn" id="17_vvjys"]
+[ext_resource type="PackedScene" uid="uid://bajusep27dr3r" path="res://Map/Interactable/Pre_TutorialBook.tscn" id="18_snvxv"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kgoo8"]
 panorama = ExtResource("7_rw5j3")
@@ -168,6 +169,13 @@ msg = Array[String](["I should take a torch with me"])
 
 [node name="CollisionShape3D" parent="Torch_Story" index="0"]
 shape = SubResource("BoxShape3D_vvjys")
+
+[node name="Tutorial_Book" parent="." instance=ExtResource("18_snvxv")]
+transform = Transform3D(0.462566, 0, -0.324434, 0, 0.565, 0, 0.324434, 0, 0.462566, -3.0274, -0.0355768, 19.0019)
+
+[node name="StoryTrigger" parent="Tutorial_Book" instance=ExtResource("17_vvjys")]
+msg = Array[String](["LMB: Use left hand        RMB: Use Right Hand", "If hand is empty, pick the item. If holding an item, throw it forward", "Hold Shift: Sprint", "Torches of the dungeon are magical, until you take them off the wall"])
+is_repeatable = true
 
 [editable path="TotemSlot"]
 [editable path="Trap_Spear_Pressure"]

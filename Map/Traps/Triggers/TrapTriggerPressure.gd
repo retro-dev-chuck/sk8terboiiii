@@ -12,7 +12,7 @@ var trigger_start: float
 var untrigger_start: float
 var is_being_untriggered: bool = false
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_triggered:
 		##wait until there is nothing on top
 		if not is_being_untriggered:
