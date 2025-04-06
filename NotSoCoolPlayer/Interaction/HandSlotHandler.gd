@@ -7,6 +7,7 @@ class_name HandSlotHandler extends Node3D
 @export var torch_left: PlayerTorch
 @export var totem_left: Node3D
 @export var totem_right: Node3D
+var story_canvas_layer: StoryUi
 
 var left_hand_item: Enums.ItemType = Enums.ItemType.None
 var right_hand_item: Enums.ItemType = Enums.ItemType.None
@@ -28,7 +29,7 @@ func _handle_right_interaction(interactable: Interactable) -> void:
 		if right_hand_item == Enums.ItemType.Torch:
 			torch_right.refresh()
 	elif type == Enums.ItemType.ResurrectionTotem:
-		print("r")
+		show_totem_msg()
 	elif type == Enums.ItemType.TotemSlot:
 		var slot: TotemSlot = interactable.free_parent as TotemSlot
 		if slot:
@@ -47,12 +48,17 @@ func _handle_left_interaction(interactable: Interactable) -> void:
 		if left_hand_item == Enums.ItemType.Torch:
 			torch_left.refresh()
 	elif type == Enums.ItemType.ResurrectionTotem:
-		print("l")
+		show_totem_msg()
 	elif type == Enums.ItemType.TotemSlot:
 		var slot: TotemSlot = interactable.free_parent as TotemSlot
 		if slot:
 			_handle_totem_slot_left(slot)
-
+			
+func show_totem_msg() -> void:
+	if not story_canvas_layer:
+		story_canvas_layer = get_tree().root.get_node("Game").get_node("%Story_CanvasLayer")
+		story_canvas_layer.show_messages(["I won't throw away the totem!"])
+		
 func _handle_totem_slot_left(slot: TotemSlot) -> void:
 	if slot.has_totem:
 		if is_side_empty(Enums.Hand.Left):
@@ -105,3 +111,7 @@ func throw_item(side: Enums.Hand) -> void:
 		right_hand_item = Enums.ItemType.None
 		torch_right._hide()
 		item_throw.throw_torch(torch_right.global_position, torch_right.time_left())
+	elif side == Enums.Hand.Left and left_hand_item == Enums.ItemType.ResurrectionTotem:
+		show_totem_msg()
+	elif side == Enums.Hand.Right and right_hand_item == Enums.ItemType.ResurrectionTotem:
+		show_totem_msg()
