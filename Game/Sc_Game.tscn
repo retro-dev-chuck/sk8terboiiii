@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6nwq01uxjmcb"]
+[gd_scene load_steps=18 format=3 uid="uid://b6nwq01uxjmcb"]
 
 [ext_resource type="Script" uid="uid://bc8q2bpqccab8" path="res://Game/Respawn.gd" id="1_kgoo8"]
 [ext_resource type="PackedScene" uid="uid://bwmepum2xna3u" path="res://NotSoCoolPlayer/Pre_Player.tscn" id="1_t8k4y"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://tdcrfae2q3mb" path="res://Map/Platforms/Pre_Platform.tscn" id="8_quc0v"]
 [ext_resource type="PackedScene" uid="uid://c007jhi43ya1i" path="res://Map/Totem/Pre_TotemSlot.tscn" id="9_vv5gj"]
 [ext_resource type="PackedScene" uid="uid://6lf0av5d2gda" path="res://NotSoCoolPlayer/Torch/Pre_PlayerTorch.tscn" id="11_6vy5n"]
+[ext_resource type="PackedScene" uid="uid://dxs2yskqxmf57" path="res://Map/Traps/Bundles/Bundle_SpearPressure.tscn" id="13_gnt1b"]
+[ext_resource type="PackedScene" uid="uid://cxcmlkd1tq4by" path="res://Map/Pre_MapTorch_Dim.tscn" id="14_mqlep"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kgoo8"]
 panorama = ExtResource("7_rw5j3")
@@ -50,7 +52,7 @@ transform = Transform3D(0.953096, 0, 0.30441, 0, 1.00053, 0, -0.30441, 0, 0.9530
 speed = 5.0
 sprint_speed = 6.5
 jump_velocity = 6.5
-coyote_time_length_ms = 100.0
+coyote_time_length_ms = 30.0
 
 [node name="Walls" parent="." instance=ExtResource("2_pa8ys")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0)
@@ -103,6 +105,21 @@ transform = Transform3D(0.436911, 0, 0, 0, 1.07175, 0, 0, 0, 0.0674444, 6.21965,
 [node name="TestGround9" parent="Inside" instance=ExtResource("8_quc0v")]
 transform = Transform3D(0, 0, -0.0674444, -0.149432, 1.00711, 0, 0.410562, 0.366559, 0, 7.76436, -10.0441, -8.10633)
 
+[node name="TestGround10" parent="Inside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0, 0, -0.0674444, -0.104603, 1.00711, 0, 0.287393, 0.366559, 0, 7.76436, -11.7476, -3.42593)
+
+[node name="TestGround11" parent="Inside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.183503, 0, 0, 0, 1.07175, 0, 0, 0, 0.0674444, 2.76496, -13.037, -3.42593)
+
+[node name="TestGround12" parent="Inside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.129756, 0, -0.0476904, 0, 1.07175, 0, 0.129756, 0, 0.0476904, 2.76496, -13.037, 0.574071)
+
+[node name="TestGround13" parent="Inside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(7.45058e-09, 0, -0.0674444, 0, 1.07175, 0, 0.183503, 0, -3.72529e-09, 2.76496, -13.037, 5.57407)
+
+[node name="TestGround14" parent="Inside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.403706, 0, -3.26424e-09, 0, 1.07175, 0, -3.40378e-08, 0, 0.283267, 2.76496, -13.037, 10.1808)
+
 [node name="Camp" type="Node3D" parent="."]
 
 [node name="Foliage" parent="Camp" instance=ExtResource("8_kgoo8")]
@@ -115,4 +132,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8995, 0.229576, 19.7419)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, -3.55087, 9.72151)
 visible = false
 
+[node name="Trap_Spear_Pressure" parent="." instance=ExtResource("13_gnt1b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75447, -12.9875, 9.89717)
+
+[node name="SpearTrap" parent="Trap_Spear_Pressure" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.17533, 1.72269)
+
+[node name="Trap_Trigger_Pressure" parent="Trap_Spear_Pressure" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.641541)
+
+[node name="MapTorch_Dim" parent="." instance=ExtResource("14_mqlep")]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 2.95641, -11.8567, 11.5958)
+
 [editable path="TotemSlot"]
+[editable path="Trap_Spear_Pressure"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxcmlkd1tq4by"]
+
+[ext_resource type="PackedScene" uid="uid://6sdmi3h2j3tb" path="res://Map/Items/Pre_MapTorch.tscn" id="1_ajqdf"]
+
+[node name="MapTorch_Dim" instance=ExtResource("1_ajqdf")]
+
+[node name="OmniLight3D" parent="." index="1"]
+light_color = Color(1, 0.623529, 0, 1)
+omni_range = 3.0
