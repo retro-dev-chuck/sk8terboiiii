@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bth88nemgou8s"]
+
+[ext_resource type="Script" uid="uid://yh2nic0x4ad5" path="res://Story/StoryTrigger.gd" id="1_eksod"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ll5nf"]
+size = Vector3(2, 1, 2)
+
+[node name="StoryTrigger" type="Area3D"]
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_eksod")
+metadata/_custom_type_script = "uid://yh2nic0x4ad5"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ll5nf")

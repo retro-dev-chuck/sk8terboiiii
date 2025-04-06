@@ -18,6 +18,8 @@ func _ready() -> void:
 ## Totem: if totem slot place, else drop on the ground -> if you die you die 
 
 func _input(_event: InputEvent) -> void:
+	if State.is_story_playing:
+		return
 	if Input.is_action_just_pressed(action):
 		## Campfire -> if holding torch refresh
 		if get_collision_count() > 0:

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Enums="*res://Global/EnumsSc.gd"
 Events="*res://Global/EventsSc.gd"
+State="*res://Global/StateSc.gd"
 
 [display]
 

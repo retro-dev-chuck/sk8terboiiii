@@ -26,7 +26,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event: InputEvent) -> void:
-	if has_died:
+	if has_died or State.is_story_playing:
 		return
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x * sensitivity))
@@ -34,6 +34,9 @@ func _input(event: InputEvent) -> void:
 		pivot.rotation.x = clamp(pivot.rotation.x, deg_to_rad(-max_rotation_y), deg_to_rad(max_rotation_y))
 
 func _physics_process(delta: float) -> void:
+	if State.is_story_playing:
+		return
+		
 	if Input.is_action_just_pressed("Quit"):
 		get_tree().quit()
 		

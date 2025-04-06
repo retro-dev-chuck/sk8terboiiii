@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b6nwq01uxjmcb"]
+[gd_scene load_steps=22 format=3 uid="uid://b6nwq01uxjmcb"]
 
 [ext_resource type="Script" uid="uid://bc8q2bpqccab8" path="res://Game/Respawn.gd" id="1_kgoo8"]
 [ext_resource type="PackedScene" uid="uid://bwmepum2xna3u" path="res://NotSoCoolPlayer/Pre_Player.tscn" id="1_t8k4y"]
@@ -14,6 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://6lf0av5d2gda" path="res://NotSoCoolPlayer/Torch/Pre_PlayerTorch.tscn" id="11_6vy5n"]
 [ext_resource type="PackedScene" uid="uid://dxs2yskqxmf57" path="res://Map/Traps/Bundles/Bundle_SpearPressure.tscn" id="13_gnt1b"]
 [ext_resource type="PackedScene" uid="uid://cxcmlkd1tq4by" path="res://Map/Pre_MapTorch_Dim.tscn" id="14_mqlep"]
+[ext_resource type="PackedScene" uid="uid://cei01vwmfkx0n" path="res://Map/UI/Pre_StoryCanvas.tscn" id="15_enflg"]
+[ext_resource type="Script" uid="uid://cvjxliomyamki" path="res://Story/Story.gd" id="16_4bmmj"]
+[ext_resource type="PackedScene" uid="uid://bth88nemgou8s" path="res://Story/Pre_StoryTrigger.tscn" id="17_vvjys"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kgoo8"]
 panorama = ExtResource("7_rw5j3")
@@ -30,6 +33,9 @@ fog_light_color = Color(0.108221, 0.115645, 0.126783, 1)
 fog_light_energy = 0.1
 fog_density = 0.075
 fog_sky_affect = 0.9
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vvjys"]
+size = Vector3(10, 1, 2)
 
 [node name="Game" type="Node3D"]
 
@@ -144,5 +150,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.641541)
 [node name="MapTorch_Dim" parent="." instance=ExtResource("14_mqlep")]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 2.95641, -11.8567, 11.5958)
 
+[node name="Story_CanvasLayer" parent="." instance=ExtResource("15_enflg")]
+unique_name_in_owner = true
+
+[node name="Intro_Story" type="Node" parent="." node_paths=PackedStringArray("ui")]
+script = ExtResource("16_4bmmj")
+ui = NodePath("../Story_CanvasLayer")
+metadata/_custom_type_script = "uid://cvjxliomyamki"
+
+[node name="Totem_StoryTrigger" parent="." instance=ExtResource("17_vvjys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.71885, 0, 18.0911)
+msg = Array[String](["Resurrection totem...", "I can take it with me, but if I die when it's not at an altar", "I will die for good..."])
+
+[node name="Torch_Story" parent="." instance=ExtResource("17_vvjys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0236664, 0, 13.4384)
+msg = Array[String](["I should take a torch with me"])
+
+[node name="CollisionShape3D" parent="Torch_Story" index="0"]
+shape = SubResource("BoxShape3D_vvjys")
+
 [editable path="TotemSlot"]
 [editable path="Trap_Spear_Pressure"]
+[editable path="Torch_Story"]
