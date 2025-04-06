@@ -51,7 +51,7 @@ material = SubResource("StandardMaterial3D_nogtt")
 
 [node name="Fire" type="GPUParticles3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06745, 0.00436838)
-amount = 16
+amount = 1
 lifetime = 0.2
 preprocess = 2.0
 process_material = SubResource("ParticleProcessMaterial_1onbo")

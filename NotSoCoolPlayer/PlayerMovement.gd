@@ -37,8 +37,6 @@ func _physics_process(delta: float) -> void:
 	if State.is_story_playing:
 		return
 		
-	if Input.is_action_just_pressed("Quit"):
-		get_tree().quit()
 		
 	if has_died:
 		velocity = Vector3.ZERO

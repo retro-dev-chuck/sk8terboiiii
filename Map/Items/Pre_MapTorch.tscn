@@ -17,6 +17,7 @@ metadata/_custom_type_script = "uid://bn6o6vg4rtbog"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13032, 0)
 light_color = Color(1, 0.752941, 0, 1)
 light_energy = 0.8
+light_bake_mode = 1
 omni_range = 10.0
 omni_attenuation = 0.7
 

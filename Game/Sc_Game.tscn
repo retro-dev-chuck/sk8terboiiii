@@ -449,6 +449,9 @@ transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 2.3372
 [node name="MapTorch_Dim" parent="FirstPart" instance=ExtResource("14_mqlep")]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 2.95641, -11.8567, 11.5958)
 
+[node name="OmniLight3D" parent="FirstPart/MapTorch_Dim" index="1"]
+light_bake_mode = 2
+
 [node name="Trap_Spear_Pressure" parent="FirstPart" instance=ExtResource("13_gnt1b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75447, -12.9875, 9.89717)
 
@@ -499,11 +502,17 @@ transform = Transform3D(-2.31474e-08, -3.5684e-08, -0.179162, -0.193829, 1.11516
 [node name="MapTorch_Dim2" parent="SecondPart" instance=ExtResource("14_mqlep")]
 transform = Transform3D(0.258819, -0.25, 0.933013, 0, 0.965926, 0.258819, -0.965926, -0.0669873, 0.25, 11.5198, -15.9996, 5.16656)
 
+[node name="OmniLight3D" parent="SecondPart/MapTorch_Dim2" index="1"]
+light_bake_mode = 2
+
 [node name="Interactable" parent="SecondPart/MapTorch_Dim2" index="2"]
 destroy_on_pick = false
 
 [node name="MapTorch_Dim3" parent="SecondPart" instance=ExtResource("14_mqlep")]
 transform = Transform3D(0.173676, 0.484839, -0.857186, -0.351833, 0.843518, 0.405822, 0.91981, 0.231105, 0.317081, -11.6286, -24.3826, 0.0424376)
+
+[node name="OmniLight3D" parent="SecondPart/MapTorch_Dim3" index="1"]
+light_bake_mode = 2
 
 [node name="Interactable" parent="SecondPart/MapTorch_Dim3" index="2"]
 destroy_on_pick = false
@@ -605,6 +614,7 @@ transform = Transform3D(-4.2222e-08, -1.13133e-08, -1, -0.258819, 0.965926, 1.77
 
 [node name="OmniLight3D" parent="Last Part/MapTorch_Dim9" index="1"]
 light_energy = 2.0
+light_bake_mode = 2
 omni_range = 5.0
 
 [node name="MapTorch_Dim10" parent="Last Part" instance=ExtResource("14_mqlep")]
@@ -612,6 +622,7 @@ transform = Transform3D(-4.2222e-08, -1.13133e-08, -1, -0.258819, 0.965926, 1.77
 
 [node name="OmniLight3D" parent="Last Part/MapTorch_Dim10" index="1"]
 light_energy = 2.0
+light_bake_mode = 2
 omni_range = 5.0
 
 [node name="Amberstone" parent="Last Part" instance=ExtResource("23_toqy5")]

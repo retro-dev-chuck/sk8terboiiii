@@ -105,6 +105,7 @@ radius = 0.8
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386622, 0)
 light_color = Color(0.960784, 0.443137, 0, 1)
 light_energy = 1.25
+light_bake_mode = 1
 omni_range = 15.0
 
 [node name="Campfire" parent="." index="1"]
@@ -118,14 +119,14 @@ shape = SubResource("SphereShape3D_8uyy8")
 
 [node name="Fire" type="GPUParticles3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375901, -0.0487095)
-amount = 16
+amount = 2
 preprocess = 2.0
 process_material = SubResource("ParticleProcessMaterial_hrcmm")
 draw_pass_1 = SubResource("QuadMesh_a0llo")
 
 [node name="Smoke" type="GPUParticles3D" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375901, -0.0487095)
-amount = 16
+amount = 2
 lifetime = 2.0
 preprocess = 4.0
 speed_scale = 0.66
