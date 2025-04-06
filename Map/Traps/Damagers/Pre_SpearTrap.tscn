@@ -1,11 +1,27 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6ltgiaqx5d5t"]
+[gd_scene load_steps=11 format=3 uid="uid://b6ltgiaqx5d5t"]
 
 [ext_resource type="Script" uid="uid://bcjne4aploy1n" path="res://Map/Traps/Damagers/SpearTrap.gd" id="1_y4tg0"]
 [ext_resource type="PackedScene" uid="uid://cn160voydjgsr" path="res://Map/Traps/Damagers/Spear.glb" id="2_cjs5c"]
 [ext_resource type="Script" uid="uid://v0srvf2gn2w1" path="res://Map/Traps/KillZone.gd" id="3_ka05k"]
+[ext_resource type="AudioStream" uid="uid://dhrkwquqjngth" path="res://Map/Traps/Damagers/Final_Trap.wav" id="4_cjs5c"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nirnv"]
 size = Vector3(2.07813, 3.13828, 2.06738)
+
+[sub_resource type="Animation" id="Animation_sap6h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 0.025, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_7xic2"]
 resource_name = "activate"
@@ -37,21 +53,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(1, 1, 1), Vector3(1, 0.01, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_sap6h"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visuals:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 0.025, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dtfuq"]
@@ -169,3 +170,8 @@ metadata/_custom_type_script = "uid://v0srvf2gn2w1"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KillZone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
 shape = SubResource("BoxShape3D_lfmj2")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_cjs5c")
+volume_db = -5.0
+max_distance = 30.0

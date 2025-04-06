@@ -8,3 +8,4 @@ func spawn() -> void:
 	player.global_position = Events.slot.spawn_point.global_position
 	player.global_basis = Events.slot.spawn_point.global_basis
 	player.has_died = false
+	State.is_player_dead = false

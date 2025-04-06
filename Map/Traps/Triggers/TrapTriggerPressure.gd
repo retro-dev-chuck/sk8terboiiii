@@ -2,6 +2,7 @@ class_name TrapTriggerPressure extends TrapTrigger
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var trap_area_3d: Area3D = $Trap_Area3D
+@onready var audio_stream_player_3d: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 @export var time_to_trigger: float = 0.35
 @export var time_to_untrigger: float = 0.5
@@ -49,6 +50,8 @@ func _physics_process(_delta: float) -> void:
 func triggered() -> void:
 	if is_triggered:
 		return
+	if not audio_stream_player_3d.playing:
+		audio_stream_player_3d.play()
 	is_triggered = true
 	animation_player.play("trigger")
 	on_triggered.emit()

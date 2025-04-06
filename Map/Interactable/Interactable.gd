@@ -5,13 +5,15 @@ signal on_picked_up()
 @export var type: Enums.ItemType = Enums.ItemType.None
 @export var free_parent: Node3D
 @export var lifetime: Lifetime
+@export var destroy_on_pick: bool = true
 
 func interact() -> Enums.ItemType:
 	return type
 
 func picked_up() -> void:
 	on_picked_up.emit()
-	free_parent.free()
+	if destroy_on_pick:
+		free_parent.free()
 	
 func has_lifetime() -> bool:
 	return lifetime != null

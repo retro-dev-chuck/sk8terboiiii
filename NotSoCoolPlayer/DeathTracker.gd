@@ -17,6 +17,7 @@ func die() -> void:
 	if player.has_died:
 		return
 	player.has_died = true
+	State.is_player_dead = true
 	await get_tree().create_timer(2).timeout
 	if Events.slot == null:
 		pass

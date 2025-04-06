@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://crdbb3sqbguoy" path="res://Map/Campfire/Fire.png" id="2_1wag2"]
 [ext_resource type="Texture2D" uid="uid://b00wb34nlcro2" path="res://Map/Campfire/Smoke.png" id="3_1wag2"]
 [ext_resource type="Script" uid="uid://c8wspo72qo5ys" path="res://Map/Interactable/Interactable.gd" id="4_8uyy8"]
-[ext_resource type="AudioStream" uid="uid://cgbd574sol08m" path="res://Environment/CampFire.wav" id="5_43wex"]
+[ext_resource type="AudioStream" uid="uid://dsba4oobuud6c" path="res://Environment/Final_CampFire.wav" id="5_43wex"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8uyy8"]
 radius = 0.7

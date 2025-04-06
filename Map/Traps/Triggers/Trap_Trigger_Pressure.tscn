@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyp60p37s8m03"]
+[gd_scene load_steps=10 format=3 uid="uid://dyp60p37s8m03"]
 
 [ext_resource type="Script" uid="uid://dy60oxc7dggtv" path="res://Map/Traps/Triggers/TrapTriggerPressure.gd" id="1_5dq28"]
+[ext_resource type="AudioStream" uid="uid://bj1ajj4cmfdok" path="res://Map/Traps/Triggers/Final_StoneGrind.wav" id="2_1hse8"]
 
 [sub_resource type="Animation" id="Animation_oec5q"]
 length = 0.001
@@ -92,3 +93,8 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Trap_Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.069646, 0)
 shape = SubResource("BoxShape3D_3lwty")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_1hse8")
+volume_db = -10.0
+max_distance = 20.0

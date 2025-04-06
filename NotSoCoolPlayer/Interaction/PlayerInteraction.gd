@@ -18,7 +18,10 @@ func _ready() -> void:
 ## Totem: if totem slot place, else drop on the ground -> if you die you die 
 
 func _input(_event: InputEvent) -> void:
-	if State.is_story_playing:
+	if Time.get_ticks_msec() - State.story_end_time < 0.3:
+		print(Time.get_ticks_msec() - State.story_end_time)
+		return
+	if State.is_story_playing or State.is_player_dead:
 		return
 	if Input.is_action_just_pressed(action):
 		## Campfire -> if holding torch refresh

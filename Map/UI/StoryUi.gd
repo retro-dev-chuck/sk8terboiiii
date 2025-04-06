@@ -5,6 +5,7 @@ class_name StoryUi extends CanvasLayer
 @export var bottom_anim: AnimationPlayer
 @export var base_char_count: float = 75
 
+var is_done: bool = true
 var messages_to_display: Array[String] = []
 
 func show_messages(messages: Array[String]) -> void:
@@ -15,6 +16,7 @@ func show_messages(messages: Array[String]) -> void:
 		return
 	State.is_story_playing = true
 	messages_to_display = messages
+	is_done = false
 	_show_next()
 	
 func _input(_event: InputEvent) -> void:
@@ -26,6 +28,8 @@ func _input(_event: InputEvent) -> void:
 			_show_next()
 
 func _show_next() -> void:
+	if is_done:
+		return
 	if messages_to_display and messages_to_display.size() > 0:
 		var speed_scale: float =  base_char_count /messages_to_display[0].length()
 		bottom_label.visible_ratio = 0.0
@@ -34,6 +38,8 @@ func _show_next() -> void:
 		bottom_anim.speed_scale = speed_scale
 		bottom_anim.play("show")
 	else:
+		is_done = true
+		State.story_end_time = Time.get_ticks_msec()
 		State.is_story_playing = false
 		bottom_container.visible = false
 		
