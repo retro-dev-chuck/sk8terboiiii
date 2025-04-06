@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bukftnggqeyrp"]
+[gd_scene load_steps=12 format=3 uid="uid://bukftnggqeyrp"]
 
 [ext_resource type="PackedScene" uid="uid://p8wowg8e6wrt" path="res://NotSoCoolPlayer/Torch/Torch.glb" id="1_b40en"]
 [ext_resource type="Texture2D" uid="uid://crdbb3sqbguoy" path="res://Map/Campfire/Fire.png" id="2_udrhd"]
+[ext_resource type="AudioStream" uid="uid://c6ofc1h23xxna" path="res://Map/Torch.wav" id="3_4c57o"]
+[ext_resource type="AudioStream" uid="uid://dsy4kornw4kg4" path="res://Map/TorchOut.wav" id="4_xma5x"]
 
 [sub_resource type="Gradient" id="Gradient_4c57o"]
 colors = PackedColorArray(1, 0.733333, 0, 1, 1, 0.145098, 0, 1)
@@ -54,3 +56,16 @@ lifetime = 0.2
 preprocess = 2.0
 process_material = SubResource("ParticleProcessMaterial_1onbo")
 draw_pass_1 = SubResource("QuadMesh_god3j")
+
+[node name="FlamesAudio" type="AudioStreamPlayer3D" parent="." index="2"]
+stream = ExtResource("3_4c57o")
+volume_db = -25.0
+unit_size = 7.5
+max_db = -10.0
+autoplay = true
+max_distance = 6.0
+
+[node name="ExtinguishAudio" type="AudioStreamPlayer3D" parent="." index="3"]
+stream = ExtResource("4_xma5x")
+volume_db = -20.0
+max_db = -15.0

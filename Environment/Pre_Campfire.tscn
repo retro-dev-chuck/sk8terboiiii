@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://8v55anliqytv"]
+[gd_scene load_steps=22 format=3 uid="uid://8v55anliqytv"]
 
 [ext_resource type="PackedScene" uid="uid://hbt2mewi5ya8" path="res://Map/Campfire/Campfire.glb" id="1_cmxit"]
 [ext_resource type="Texture2D" uid="uid://crdbb3sqbguoy" path="res://Map/Campfire/Fire.png" id="2_1wag2"]
 [ext_resource type="Texture2D" uid="uid://b00wb34nlcro2" path="res://Map/Campfire/Smoke.png" id="3_1wag2"]
 [ext_resource type="Script" uid="uid://c8wspo72qo5ys" path="res://Map/Interactable/Interactable.gd" id="4_8uyy8"]
+[ext_resource type="AudioStream" uid="uid://cgbd574sol08m" path="res://Environment/CampFire.wav" id="5_43wex"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8uyy8"]
 radius = 0.7
@@ -142,3 +143,9 @@ metadata/_custom_type_script = "uid://c8wspo72qo5ys"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" index="0"]
 shape = SubResource("SphereShape3D_43wex")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="6"]
+stream = ExtResource("5_43wex")
+volume_db = -10.0
+autoplay = true
+max_distance = 10.0
