@@ -122,6 +122,7 @@ metadata/_custom_type_script = "uid://dm3boenbk7ttj"
 [node name="Torch_Right" parent="." instance=ExtResource("2_sssf0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.462751, -0.243101, -0.568506)
 visible = false
+should_print = true
 
 [node name="Torch_Left" parent="." instance=ExtResource("2_sssf0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.770803, -0.243101, -0.568506)

@@ -9,7 +9,7 @@ const FRESH_LIFETIME: float = 20.0
 @export var light: Node3D
 @export var audio_player: AudioStreamPlayer3D
 @export var audio_player_extinguish: AudioStreamPlayer3D
-
+@export var should_print: bool = false
 var is_live: bool = false
 
 func _ready() -> void:
@@ -37,14 +37,17 @@ func refresh(time: float = FRESH_LIFETIME) -> void:
 		audio_player.play()
 	if audio_player_extinguish.playing:
 		audio_player_extinguish.stop()
+	if time <= 0.1:
+		visible = true
+		return
 	pfx.amount = 16
 	lifetime.start(time)
 	is_live = true
 	pfx.visible = true
 	light.visible = true
 	visible = true
-
+	
 func time_left() -> float:
 	if lifetime:
-		return lifetime.timer.wait_time	
+		return lifetime.timer.time_left	
 	return 0

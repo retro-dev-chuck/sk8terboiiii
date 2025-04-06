@@ -109,8 +109,8 @@ func throw_item(side: Enums.Hand) -> void:
 		item_throw.throw_torch(torch_left.global_position, torch_left.time_left())
 	elif side == Enums.Hand.Right and right_hand_item == Enums.ItemType.Torch:
 		right_hand_item = Enums.ItemType.None
-		torch_right._hide()
 		item_throw.throw_torch(torch_right.global_position, torch_right.time_left())
+		torch_right._hide()
 	elif side == Enums.Hand.Left and left_hand_item == Enums.ItemType.ResurrectionTotem:
 		show_totem_msg()
 	elif side == Enums.Hand.Right and right_hand_item == Enums.ItemType.ResurrectionTotem:

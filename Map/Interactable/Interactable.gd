@@ -20,7 +20,8 @@ func has_lifetime() -> bool:
 	
 func get_lifetime() -> float:
 	if has_lifetime():
-		return lifetime.timer.wait_time
+		push_error(lifetime.timer.time_left)
+		return lifetime.timer.time_left
 	else:
 		match(type):
 			Enums.ItemType.Torch:

@@ -6,6 +6,9 @@ class_name ThrowableTorch extends RigidBody3D
 @export var pfx: Node3D
 		
 func thrown(duration_left: float) -> void:
+	if duration_left < 1.0:
+		_on_life_end()
+		return
 	if is_node_ready():
 		lifetime.on_timer_finished.connect(_on_life_end)
 		lifetime.start(duration_left)
@@ -15,8 +18,8 @@ func thrown(duration_left: float) -> void:
 		lifetime.start(duration_left)
 
 func _on_life_end() -> void:
-	lifetime.on_timer_finished.disconnect(_on_life_end)
-	lifetime.queue_free()
-	interactable.queue_free()
+	if lifetime.on_timer_finished.is_connected(_on_life_end):
+		lifetime.on_timer_finished.disconnect(_on_life_end)
+	lifetime.timer.start(0.1)
 	light.queue_free()
 	pfx.queue_free()

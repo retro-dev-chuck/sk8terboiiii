@@ -8,3 +8,4 @@ timer = NodePath("Timer")
 metadata/_custom_type_script = "uid://dkshr5jsj3x6v"
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true

@@ -71,7 +71,7 @@ metadata/_custom_type_script = "uid://dkic2lgoi803t"
 environment = SubResource("Environment_v7n2m")
 
 [node name="Player" parent="." instance=ExtResource("1_t8k4y")]
-transform = Transform3D(0.953096, 0, 0.30441, 0, 1.00053, 0, -0.30441, 0, 0.953096, 2.97158, 0.296987, 22.1368)
+transform = Transform3D(0.953096, 0, 0.30441, 0, 1.00053, 0, -0.30441, 0, 0.953096, 2.97158, 0.59881, 22.1368)
 speed = 5.0
 sprint_speed = 6.5
 jump_velocity = 6.5
@@ -135,7 +135,7 @@ transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107
 has_totem = true
 
 [node name="SpawnPoint" parent="TotemSlot" index="0"]
-transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 3.40654, 0.410304, -1.87671)
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 3.40654, 0.452491, -1.87671)
 
 [node name="TestGround" parent="." instance=ExtResource("8_quc0v")]
 transform = Transform3D(6.29519, 0, 0, 0, 1, 0, 0, 0, 4.38153, 0, -0.1, 35.7011)
