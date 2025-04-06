@@ -41,6 +41,7 @@ func _physics_process(delta: float) -> void:
 		get_tree().quit()
 		
 	if has_died:
+		velocity = Vector3.ZERO
 		return
 		
 	if is_on_floor():

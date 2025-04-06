@@ -4,6 +4,8 @@ signal on_interaction_successful(interactable: Interactable)
 
 @export var hand_slot_handler: HandSlotHandler
 @export var side: Enums.Hand = Enums.Hand.None
+var story_canvas_layer: StoryUi
+var fullscui: FullScUi
 var action: String = "SELECT_ACTION"
 
 func _ready() -> void:
@@ -11,11 +13,6 @@ func _ready() -> void:
 		action = "Interact_Left"
 	elif side == Enums.Hand.Right:
 		action = "Interact_Right"
-		
-		
-		
-## CASES
-## Totem: if totem slot place, else drop on the ground -> if you die you die 
 
 func _input(_event: InputEvent) -> void:
 	if Time.get_ticks_msec() - State.story_end_time < 0.3:
@@ -42,6 +39,12 @@ func _input(_event: InputEvent) -> void:
 					var slot: TotemSlot = interactable.free_parent as TotemSlot
 					if slot:
 						if slot.has_totem:
+							if slot.is_sticky:
+								if not story_canvas_layer:
+									story_canvas_layer = get_tree().root.get_node("Game").get_node("%Story_CanvasLayer")
+									story_canvas_layer.show_messages(["It's stuck........."])
+								##await sometime and Ending A
+								return
 							if hand_slot_handler.is_side_empty(side):
 								on_interaction_successful.emit(interactable)
 							else:##hand full can't take totem
@@ -52,7 +55,21 @@ func _input(_event: InputEvent) -> void:
 							else:
 								on_interaction_successful.emit(interactable)
 				elif type == Enums.ItemType.ResurrectionTotem:
-					_try_throw_item()				
+					_try_throw_item()	
+				elif type == Enums.ItemType.Amberstone:	
+					on_interaction_successful.emit(interactable)
+					if Events.slot and (Events.slot.id == 2 or Events.slot.id == 3 or Events.slot.id == 4 or Events.slot.id == 5):
+						if not fullscui:
+							fullscui = get_tree().root.get_node("Game").get_node("%FullScUi")
+							if fullscui:
+								fullscui.show_msg("Congratulations?")
+								Events.on_game_over.emit(1)
+					elif not Events.slot:
+						if not fullscui:
+							fullscui = get_tree().root.get_node("Game").get_node("%FullScUi")
+							if fullscui:
+								fullscui.show_msg("Congratulations?")
+								Events.on_game_over.emit(3)
 		else: ##No interactable object -> if hand full throw item
 			_try_throw_item()	
 					

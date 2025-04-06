@@ -7,6 +7,8 @@ class_name HandSlotHandler extends Node3D
 @export var torch_left: PlayerTorch
 @export var totem_left: Node3D
 @export var totem_right: Node3D
+@export var amber_left: Node3D
+@export var amber_right: Node3D
 var story_canvas_layer: StoryUi
 
 var left_hand_item: Enums.ItemType = Enums.ItemType.None
@@ -34,6 +36,11 @@ func _handle_right_interaction(interactable: Interactable) -> void:
 		var slot: TotemSlot = interactable.free_parent as TotemSlot
 		if slot:
 			_handle_totem_slot_right(slot)
+	elif type == Enums.ItemType.Amberstone:
+		right_hand_item = Enums.ItemType.Amberstone
+		interactable.picked_up()
+		State.has_amberstone = true
+		amber_right.visible = true
 	
 func _handle_left_interaction(interactable: Interactable) -> void:
 	var type: Enums.ItemType = interactable.type
@@ -53,6 +60,11 @@ func _handle_left_interaction(interactable: Interactable) -> void:
 		var slot: TotemSlot = interactable.free_parent as TotemSlot
 		if slot:
 			_handle_totem_slot_left(slot)
+	elif type == Enums.ItemType.Amberstone:
+		left_hand_item = Enums.ItemType.Amberstone
+		interactable.picked_up()
+		State.has_amberstone = true
+		amber_left.visible = true
 			
 func show_totem_msg() -> void:
 	if not story_canvas_layer:

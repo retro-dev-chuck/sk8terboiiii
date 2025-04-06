@@ -15,6 +15,21 @@ border_color = Color(0.196078, 0.133333, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_3m37w"]
 line_spacing = 10.0
 
+[sub_resource type="Animation" id="Animation_4twn1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bottom_Container/MarginContainer/HBoxContainer/Bottom_Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_3m37w"]
 resource_name = "show"
 length = 3.0
@@ -31,21 +46,6 @@ tracks/0/keys = {
 "values": [0.0, 1.0]
 }
 
-[sub_resource type="Animation" id="Animation_4twn1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Bottom_Container/MarginContainer/HBoxContainer/Bottom_Label:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_05ta1"]
 _data = {
 &"RESET": SubResource("Animation_4twn1"),
@@ -53,6 +53,7 @@ _data = {
 }
 
 [node name="Story_CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("bottom_label", "bottom_container", "bottom_anim")]
+layer = 2
 script = ExtResource("1_3m37w")
 bottom_label = NodePath("Bottom_Container/MarginContainer/HBoxContainer/Bottom_Label")
 bottom_container = NodePath("Bottom_Container")

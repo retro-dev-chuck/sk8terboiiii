@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b6nwq01uxjmcb"]
+[gd_scene load_steps=48 format=4 uid="uid://b6nwq01uxjmcb"]
 
 [ext_resource type="Script" uid="uid://bc8q2bpqccab8" path="res://Game/Respawn.gd" id="1_kgoo8"]
 [ext_resource type="PackedScene" uid="uid://bwmepum2xna3u" path="res://NotSoCoolPlayer/Pre_Player.tscn" id="1_t8k4y"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://tdcrfae2q3mb" path="res://Map/Platforms/Pre_Platform.tscn" id="8_quc0v"]
 [ext_resource type="PackedScene" uid="uid://c007jhi43ya1i" path="res://Map/Totem/Pre_TotemSlot.tscn" id="9_vv5gj"]
 [ext_resource type="Texture2D" uid="uid://btg768c26byfl" path="res://Environment/Ground.png" id="10_rnsa3"]
-[ext_resource type="PackedScene" uid="uid://6lf0av5d2gda" path="res://NotSoCoolPlayer/Torch/Pre_PlayerTorch.tscn" id="11_6vy5n"]
 [ext_resource type="Texture2D" uid="uid://dhcbd7xctuiy0" path="res://Environment/Ground_n.png" id="11_toqy5"]
 [ext_resource type="PackedScene" uid="uid://dxs2yskqxmf57" path="res://Map/Traps/Bundles/Bundle_SpearPressure.tscn" id="13_gnt1b"]
 [ext_resource type="PackedScene" uid="uid://cxcmlkd1tq4by" path="res://Map/Pre_MapTorch_Dim.tscn" id="14_mqlep"]
@@ -22,6 +21,12 @@
 [ext_resource type="PackedScene" uid="uid://bajusep27dr3r" path="res://Map/Interactable/Pre_TutorialBook.tscn" id="18_snvxv"]
 [ext_resource type="PackedScene" uid="uid://4ttcyxboj6b4" path="res://Environment/Pre_Tree.tscn" id="19_3xbkl"]
 [ext_resource type="PackedScene" uid="uid://dwm1tdvmkubq1" path="res://Environment/Pre_Foliage.tscn" id="22_2gtoj"]
+[ext_resource type="PackedScene" uid="uid://0cabqvd142jj" path="res://Game/Pre_Destroyer.tscn" id="22_rnsa3"]
+[ext_resource type="PackedScene" uid="uid://22u30u8oo7ti" path="res://Map/Interactable/Pre_Amberstone.tscn" id="23_toqy5"]
+[ext_resource type="Script" uid="uid://c5hi75n0ij6op" path="res://Map/UI/FullScUi.gd" id="25_8dn5o"]
+[ext_resource type="Texture2D" uid="uid://cuwr6cytj7wab" path="res://Map/Totem/Totem_TotemFace.png" id="25_ew37t"]
+[ext_resource type="FontFile" uid="uid://bqgyg3rp3sfhi" path="res://Fonts/dogicabold.ttf" id="25_h0x0q"]
+[ext_resource type="Script" uid="uid://o7f2bvmev3oc" path="res://Game/Win.gd" id="27_8dn5o"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kgoo8"]
 panorama = ExtResource("7_rw5j3")
@@ -54,6 +59,116 @@ size = Vector3(9.92285, 1000, 3.467)
 [sub_resource type="BoxShape3D" id="BoxShape3D_3xbkl"]
 size = Vector3(30.4009, 1000, 3.467)
 
+[sub_resource type="SphereMesh" id="SphereMesh_8dn5o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1wk7y"]
+albedo_color = Color(0.118321, 0.26059, 0.589117, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e7ehh"]
+radius = 0.52
+
+[sub_resource type="SphereMesh" id="SphereMesh_e7ehh"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o52iy"]
+resource_name = "Totem"
+cull_mode = 2
+albedo_texture = ExtResource("25_ew37t")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_unglg"]
+_surfaces = [{
+"aabb": AABB(-0.951057, 0, -1.68775, 2.40179, 5.79557, 3.32829),
+"format": 34896613377,
+"index_count": 237,
+"index_data": PackedByteArray("BQAcAAAAAAAcAB0AAAAdAAIABQAeABwACAAeAAUAAgAdAB8AAgAfAAMAAwAgAAgACAAgAB4AAwAfACAAHAABAB0AHgAEABwAHAAEAAEAIAAhAB4AHgAhAAQAHwAiACAAIAAiACEAHQAjAB8AHQABACMAHwAjACIABAAJAAEAIQALAAQABAALAAkAIgAHACEAIQAHAAsAIwAkACIAIgAkAAcAAQAGACMAIwAGACQAAQAJAAYABwANAAsAJAAYAAcABwAaAA0AGAAaAAcAGgAbAA0ACwANABsAGgAZABsAGAAZABoAFAAbABkACwAbABQAFAAZABgACwAUABIACwASAAkAGAAlABQAJAAmABgABgAmACQACQAMAAYAJgAnABgAGAAnACUACQAOAAwAEgAOAAkABgAMAA8ADgAPAAwADgARAA8AEgARAA4ABgAPABAAEAAPABEAEAARABIABgAQACYAEAAoACYAJgAoACcAEgApABAAEAApACgAEgAqACkAFAAqABIAFAAlACoAKQAKACgAJwAXACUAKgATACkAKQATAAoAJQAVACoAJQAXABUAKgAVABMAKAAWACcAJwAWABcAKAAKABYAFgAVABcAEwAWAAoAFgATABUA"),
+"lods": [0.394631, PackedByteArray("AAABAAIAAgABAAMAAAAEAAEABQAEAAAAAQAGAAMABQAHAAQACAAHAAUABAAJAAEAAQAJAAYAAwAKAAgACAAKAAcAAwAGAAoABAALAAkABwALAAQACQAMAAYABwANAAsACQAOAAwABgAMAA8ADgAPAAwABgAPABAADgARAA8AEAAPABEABgAQAAoAEgARAA4AEgAOAAkAEAARABIACwASAAkAEAATAAoAEgATABAACwAUABIAEgAVABMAFAAVABIAEwAWAAoAFgATABUAFgAVABcAFAAXABUACgAWABgAGAAWABcAGAAXABQACgAYAAcAFAAZABgAGAAaAAcAGAAZABoABwAaAA0AFAAbABkAGgAZABsACwAbABQAGgAbAA0ACwANABsA")],
+"name": "Totem",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 43,
+"vertex_data": PackedByteArray("vMoAAAtqAAAEpFdYCcAAAASkAAAJwAAAuCYAAAnAAAC8yldYC2oAAF5lAADlNAAAuCZYjQnAAABeZViN5TQAAAAAAAALagAABKRYjQnAAAC2Pv//v3gAALzKWI0LagAAuCZYjf//AAD//1iNJTUAAASkWI3//wAAuCZawv//AAC4JlrCCcAAAASkWsL//wAABKRawgnAAAB6Tf//ipkAALzKWsILagAAQn3//4qZAABeZf//e2QAAAaM//+/eAAAXmVawuU0AACgmlrCAAAAAKCaWI0AAAAA//9awiU1AAC8ylYjC2oAAASkViMJwAAAXmVWI+U0AAC4JlYjCcAAAAAAViMLagAAXmVXWOU0AAAAAFdYC2oAALgmV1gJwAAAAABYjQtqAABej6Dk93cAAAAAWsILagAAXmWg5PFhAABeO6Dk93cAAGlLoOSYmwAAU3+g5JibAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_of3nu"]
+resource_name = "Totem_Circle"
+_surfaces = [{
+"aabb": AABB(-0.951057, 0, -1.68775, 2.40179, 5.79557, 3.32829),
+"attribute_data": PackedByteArray("zD26ShoZQIkaGb5KzD09iXD3b5yy0qnastJvnHD3//+y0v//cPfgOHD3Gney0uA4stJvnHD3b5zulBRKOXDlrTlwN0pJivH/OXBG00p8//+bVlCtm1ax0mBPpNtrkheXa5Kd22BPHZejuTdKk5/x/+6UFEqjueWto7lG05Kt//+y0rTSstJTrSgppps2rUNCsrChm6QsT0KUKO6Aeg9fW5QobFt6D+GAWnu+JJtWFEqbVr4kWnsUShigVSWquhRKGKAUSqq6VSXHJ+V6+A51VccnY1X4DvZ6RO3gOLLSIRRE7SEUstLgOBigviRaexRKWnu+JBigFEoWulUlGKCXABa6lwAYoFUlmXC+JJtWAACZcAAAm1a+JMw9QdRDJf//GhlE1EEz/f860L9F58JoMzrQvDfnwhRKqrq+Pn1Jzh0cMLpKviTOHR8+ukq+JM4dXQu6SgAAzh1gGbpKstJTtXD3U7Vw96nastLEUXD3xFGy0hp3OXAjY+6U/2I5cISI7pRhiO6Uwq05cEbT7pQj0xoZv2PMPbtj7pT/YqO5I2PulGGIo7mEiO6Uwq3ulCPTo7lG0zlwRtM5cOWtnSSf7NEzneyjueWto7lG09EzneydJJ/sAp+S7O6UI9M3rqDsgS9eN7o+XjfCCl43/BleN+6UI9Ole6Ds2oqS7DeuoOwCn5Lsuj5eN4EvXjf8GV43wgpeN9qKkuyle6Ds"),
+"format": 34896613399,
+"index_count": 237,
+"index_data": PackedByteArray("BABXAAYABABYAFcAWAAFAFcAWABZAAUAWQAIAAUAWQAHAAgACQBaAAsACQBbAFoAWwBcAFoAWwAKAFwACgAMAFwACgANAAwADgBdABAADgBeAF0AXgBfAF0AXgBgAF8AYAAPAF8AYABhAA8AYQBiAA8AYQBjAGIAAABkAAIAAABlAGQAZQABAGQAZQADAAEAGgBmABwAGgBnAGYAZwBoAGYAZwBpAGgAaQBqAGgAaQAdAGoAHQBrAGoAHQBsAGsAFgAXABgAFgAZABcAIgAjACQAIgAlACMAbQAUAG4AbQAVABQAJgAnACgAJgApACcARgBvAEgARgBwAG8AKgArACwAKgAtACsALgAvADAALgAxAC8AMgAzADQAMgA1ADMANgA3ADgANgA5ADcAOgA7ADwAOgA9ADsAPgA/AEAAPgBBAD8AcQAgAHIAcQAhACAAQgBDAEQAQgBFAEMAcwBHAHQAcwBJAEcAHgB1AHYAHgB3AHUATwB4AFEATwB5AHgAUwB6AFUAUwB7AHoAfAB9ABIAfAB+AH0ASgBLAEwASwBKAE0ASwBNAE4AfwAbAIAAfwAfABsAgQBQAIIAgQBSAFAAgwBUAIQAgwBWAFQAhQATAIYAhQARABMA"),
+"lods": [0.394631, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUABwAIAAUACQAKAAsACgAMAAsACgANAAwADgAPABAADgARAA8AEQASAA8AEQATABIAEgAUAA8AEgAVABQAFgAXABgAFgAZABcAGgAbABwAGgAdABsAHQAeABsAHgAfABsAHQAgAB4AHQAhACAAIgAjACQAIgAlACMAJgAnACgAJgApACcAKgArACwAKgAtACsALgAvADAALgAxAC8AMgAzADQAMgA1ADMANgA3ADgANgA5ADcAOgA7ADwAOgA9ADsAPgA/AEAAPgBBAD8AQgBDAEQAQgBFAEMARgBHAEgARgBJAEcASgBLAEwASwBKAE0ASwBNAE4ATwBQAFEATwBSAFAAUwBUAFUAUwBWAFQA")],
+"material": SubResource("StandardMaterial3D_o52iy"),
+"name": "Totem",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 135,
+"vertex_data": PackedByteArray("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")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_unglg")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ew37t"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_8dn5o"]
+resource_name = "fadein"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadePanel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1wk7y"]
+resource_name = "fadeout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadePanel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_unglg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadePanel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_of3nu"]
+_data = {
+&"RESET": SubResource("Animation_unglg"),
+&"fadein": SubResource("Animation_8dn5o"),
+&"fadeout": SubResource("Animation_1wk7y")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ew37t"]
+size = Vector3(36.2842, 1, 21.5049)
+
 [node name="Game" type="Node3D"]
 
 [node name="Respawn" type="Node3D" parent="." node_paths=PackedStringArray("player")]
@@ -71,11 +186,11 @@ metadata/_custom_type_script = "uid://dkic2lgoi803t"
 environment = SubResource("Environment_v7n2m")
 
 [node name="Player" parent="." instance=ExtResource("1_t8k4y")]
-transform = Transform3D(0.953096, 0, 0.30441, 0, 1.00053, 0, -0.30441, 0, 0.953096, 2.97158, 0.59881, 22.1368)
+transform = Transform3D(0.953096, 0, 0.30441, 0, 1.00053, 0, -0.30441, 0, 0.953096, 3.8486, 0.442962, 23.1904)
 speed = 5.0
 sprint_speed = 6.5
 jump_velocity = 6.5
-coyote_time_length_ms = 30.0
+coyote_time_length_ms = 10000.0
 
 [node name="Outside" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30.0012)
@@ -178,10 +293,14 @@ surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
 
 [node name="TotemSlot" parent="Outside" instance=ExtResource("9_vv5gj")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 3.70294, -0.0445462, -11.9411)
+id = 999
 has_totem = true
 
 [node name="SpawnPoint" parent="Outside/TotemSlot" index="0"]
 transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 3.40654, 0.452491, -1.87671)
+
+[node name="Totem_Visual" parent="Outside/TotemSlot" index="3"]
+visible = true
 
 [node name="Story_CanvasLayer" parent="Outside" instance=ExtResource("15_enflg")]
 unique_name_in_owner = true
@@ -209,20 +328,17 @@ transform = Transform3D(0.462566, 0, -0.324434, 0, 0.565, 0, 0.324434, 0, 0.4625
 msg = Array[String](["LMB: Use left hand        RMB: Use Right Hand", "If hand is empty, pick the item. If holding an item, throw it forward", "Hold Shift: Sprint", "Torches of the dungeon are magical, until you take them off the wall"])
 is_repeatable = true
 
+[node name="CampFire" type="Node3D" parent="Outside"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30.0012)
+
+[node name="Foliage" parent="Outside/CampFire" instance=ExtResource("8_kgoo8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.79076, -0.0499993, 16.7317)
+
+[node name="Campfire" parent="Outside/CampFire" instance=ExtResource("7_kgoo8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8995, 0.229576, 19.7419)
+
 [node name="Walls" parent="." instance=ExtResource("2_pa8ys")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0)
-
-[node name="MapTorch" parent="." instance=ExtResource("3_v3iej")]
-transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -4.916, 2, 13.581)
-
-[node name="Interactable" parent="MapTorch" index="2"]
-destroy_on_pick = false
-
-[node name="MapTorch2" parent="." instance=ExtResource("3_v3iej")]
-transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 4.784, 2, 13.581)
-
-[node name="Interactable" parent="MapTorch2" index="2"]
-destroy_on_pick = false
 
 [node name="TopPart" parent="." instance=ExtResource("3_ekh0v")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
@@ -262,88 +378,358 @@ transform = Transform3D(-1, 0, -7.15295e-08, 0, 1, 0, 7.15295e-08, 0, -1, 0.1746
 transform = Transform3D(0.999994, 0, 3.58824e-13, 0, 1, 0, -3.58824e-13, 0, 0.999994, -0.210962, 0, 13.2788)
 shape = SubResource("BoxShape3D_3xbkl")
 
-[node name="Inside" type="Node3D" parent="."]
+[node name="MapTorch" parent="TopPart" instance=ExtResource("3_v3iej")]
+transform = Transform3D(-0.965926, -0.258819, -8.74228e-08, -0.258819, 0.965926, 0, 8.44439e-08, 2.26267e-08, -1, 4.916, 2, -13.581)
 
-[node name="TestGround2" parent="Inside" instance=ExtResource("8_quc0v")]
+[node name="Interactable" parent="TopPart/MapTorch" index="2"]
+destroy_on_pick = false
+
+[node name="MapTorch2" parent="TopPart" instance=ExtResource("3_v3iej")]
+transform = Transform3D(-0.965926, 0.258819, -8.74228e-08, 0.258819, 0.965926, 0, 8.44439e-08, -2.26267e-08, -1, -4.784, 2, -13.581)
+
+[node name="Interactable" parent="TopPart/MapTorch2" index="2"]
+destroy_on_pick = false
+
+[node name="FirstPart" type="Node3D" parent="."]
+
+[node name="TestGround2" parent="FirstPart" instance=ExtResource("8_quc0v")]
 transform = Transform3D(0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 0, 0, 0.3, 0.4, -1.7, 9.99213)
 
-[node name="TestGround3" parent="Inside" instance=ExtResource("8_quc0v")]
+[node name="TestGround3" parent="FirstPart" instance=ExtResource("8_quc0v")]
 transform = Transform3D(0.740449, -0.0826944, 0, 0.0647809, 0.945201, 0, 0, 0, 0.225, -7.8, -3.7, 10.8921)
 
-[node name="TestGround4" parent="Inside" instance=ExtResource("8_quc0v")]
+[node name="TestGround4" parent="FirstPart" instance=ExtResource("8_quc0v")]
 transform = Transform3D(-0.000247404, -0.00720719, -0.224994, 0.192612, 0.916373, -0.00167013, 0.717887, -0.245869, 0.000370563, -10.8, -5, 3.89213)
 
-[node name="TestGround5" parent="Inside" instance=ExtResource("8_quc0v")]
+[node name="TestGround5" parent="FirstPart" instance=ExtResource("8_quc0v")]
 transform = Transform3D(-8.95493e-05, -0.008141, -0.224808, 0.0697169, 1.0351, -0.00166875, 0.259844, -0.277725, 0.000370258, -10.7976, -6.89232, -3.16077)
 
-[node name="TestGround6" parent="Inside" instance=ExtResource("8_quc0v")]
+[node name="TestGround6" parent="FirstPart" instance=ExtResource("8_quc0v")]
 transform = Transform3D(-0.00015467, -0.00560948, -0.225253, 0.120415, 0.713229, -0.00167205, 0.448804, -0.191364, 0.000370989, -10.3458, -8.57992, -9.46386)
 
-[node name="MapTorch3" parent="Inside" instance=ExtResource("3_v3iej")]
+[node name="MapTorch3" parent="FirstPart" instance=ExtResource("3_v3iej")]
 transform = Transform3D(0.977616, 0, 0, 0, 1.02703, -0.258819, 0, 0.275192, 0.965926, 0.421062, -8.90803, -11.4692)
 
-[node name="TestGround7" parent="Inside" instance=ExtResource("8_quc0v")]
+[node name="TestGround7" parent="FirstPart" instance=ExtResource("8_quc0v")]
 transform = Transform3D(0.624158, 0, 0, 0, 1.07175, 0, 0, 0, 0.224815, -2.51857, -9.33909, -10.5663)
 
-[node name="TestGround8" parent="Inside" instance=ExtResource("8_quc0v")]
+[node name="TestGround8" parent="FirstPart" instance=ExtResource("8_quc0v")]
 transform = Transform3D(0.436911, 0, 0, 0, 1.07175, 0, 0, 0, 0.0674444, 6.21965, -9.33909, -10.4314)
 
-[node name="TestGround9" parent="Inside" instance=ExtResource("8_quc0v")]
+[node name="TestGround9" parent="FirstPart" instance=ExtResource("8_quc0v")]
 transform = Transform3D(0, 0, -0.0674444, -0.149432, 1.00711, 0, 0.410562, 0.366559, 0, 7.76436, -10.0441, -8.10633)
 
-[node name="TestGround10" parent="Inside" instance=ExtResource("8_quc0v")]
+[node name="TestGround10" parent="FirstPart" instance=ExtResource("8_quc0v")]
 transform = Transform3D(0, 0, -0.0674444, -0.104603, 1.00711, 0, 0.287393, 0.366559, 0, 7.76436, -11.7476, -3.42593)
 
-[node name="TestGround11" parent="Inside" instance=ExtResource("8_quc0v")]
+[node name="TestGround11" parent="FirstPart" instance=ExtResource("8_quc0v")]
 transform = Transform3D(0.183503, 0, 0, 0, 1.07175, 0, 0, 0, 0.0674444, 2.76496, -13.037, -3.42593)
 
-[node name="TestGround12" parent="Inside" instance=ExtResource("8_quc0v")]
+[node name="TestGround12" parent="FirstPart" instance=ExtResource("8_quc0v")]
 transform = Transform3D(0.129756, 0, -0.0476904, 0, 1.07175, 0, 0.129756, 0, 0.0476904, 2.76496, -13.037, 0.574071)
 
-[node name="TestGround13" parent="Inside" instance=ExtResource("8_quc0v")]
+[node name="TestGround13" parent="FirstPart" instance=ExtResource("8_quc0v")]
 transform = Transform3D(7.45058e-09, 0, -0.0674444, 0, 1.07175, 0, 0.183503, 0, -3.72529e-09, 2.76496, -13.037, 5.57407)
 
-[node name="TestGround14" parent="Inside" instance=ExtResource("8_quc0v")]
+[node name="TestGround14" parent="FirstPart" instance=ExtResource("8_quc0v")]
 transform = Transform3D(0.403706, 0, -3.26424e-09, 0, 1.07175, 0, -3.40378e-08, 0, 0.283267, 2.76496, -13.037, 10.1808)
 
-[node name="TestGround15" parent="Inside" instance=ExtResource("8_quc0v")]
+[node name="TestGround15" parent="FirstPart" instance=ExtResource("8_quc0v")]
 transform = Transform3D(0.121112, 0, -9.79273e-10, 0, 1.07175, 0, -1.02113e-08, 0, 0.08498, 8.89235, -13.037, 10.1622)
 
-[node name="TestGround16" parent="Inside" instance=ExtResource("8_quc0v")]
-transform = Transform3D(0.218001, 0, -5.09222e-09, 0, 1.07175, 0, -1.83804e-08, 0, 0.441896, 10.5924, -13.037, 9.16224)
+[node name="TestGround16" parent="FirstPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.218001, 0, -5.09222e-09, 0, 1.07175, 0, -1.83804e-08, 0, 0.441896, 10.5924, -15.037, 9.16224)
 
-[node name="TotemSlot" parent="Inside" instance=ExtResource("9_vv5gj")]
-transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 10.7578, -12.9779, 7.825)
+[node name="TotemSlot" parent="FirstPart" instance=ExtResource("9_vv5gj")]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 10.7578, -14.9779, 7.825)
 
-[node name="SpawnPoint" parent="Inside/TotemSlot" index="0"]
+[node name="SpawnPoint" parent="FirstPart/TotemSlot" index="0"]
 transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 2.33725, 0, -0.394046)
 
-[node name="Totem_Visual" parent="Inside/TotemSlot" index="3"]
-visible = false
+[node name="MapTorch_Dim" parent="FirstPart" instance=ExtResource("14_mqlep")]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 2.95641, -11.8567, 11.5958)
 
-[node name="Camp" type="Node3D" parent="."]
-
-[node name="Foliage" parent="Camp" instance=ExtResource("8_kgoo8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.79076, -0.0499993, 16.7317)
-
-[node name="Campfire" parent="Camp" instance=ExtResource("7_kgoo8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8995, 0.229576, 19.7419)
-
-[node name="Torch" parent="." instance=ExtResource("11_6vy5n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, -3.55087, 9.72151)
-visible = false
-
-[node name="Trap_Spear_Pressure" parent="." instance=ExtResource("13_gnt1b")]
+[node name="Trap_Spear_Pressure" parent="FirstPart" instance=ExtResource("13_gnt1b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75447, -12.9875, 9.89717)
 
-[node name="SpearTrap" parent="Trap_Spear_Pressure" index="0"]
+[node name="SpearTrap" parent="FirstPart/Trap_Spear_Pressure" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.17533, 1.72269)
 
-[node name="Trap_Trigger_Pressure" parent="Trap_Spear_Pressure" index="1"]
+[node name="Trap_Trigger_Pressure" parent="FirstPart/Trap_Spear_Pressure" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.641541)
 
-[node name="MapTorch_Dim" parent="." instance=ExtResource("14_mqlep")]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 2.95641, -11.8567, 11.5958)
+[node name="SecondPart" type="Node3D" parent="."]
+
+[node name="T17" parent="SecondPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.121112, 0, -5.87564e-09, 0, 1.07175, 0, -1.02113e-08, 0, 0.50988, 10.9124, -17.237, 7.2686)
+
+[node name="TestGround18" parent="SecondPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.0459546, 0, 0.12506, 0, 1.07175, 0, -0.0116266, 0, 0.494305, 10.6011, -19.2592, 9.15705)
+
+[node name="TestGround19" parent="SecondPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.0307808, -0.101982, 0.384712, -0.00526741, 1.03919, 0.111111, -0.0356623, -0.241513, 0.31564, 7.11204, -20.8302, 6.33885)
+
+[node name="TestGround23" parent="SecondPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.00800412, -0.229469, 0.25459, -0.00477704, 1.14055, 0.0576136, -0.041967, -0.173592, 0.0419985, 1.95712, -24.3282, 6.33885)
+
+[node name="TestGround24" parent="SecondPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.00758406, 0.611489, 0.109389, 0.00349464, 1.48718, -0.0456437, -0.0815735, 0.120563, 0.00821473, -2.76311, -25.846, 5.51716)
+
+[node name="TestGround26" parent="SecondPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.00455891, -0.274243, 0.116897, 0.00699619, 1.58443, 0.0196081, -0.0815735, 0.120563, 0.00821473, -6.36036, -25.846, 5.51716)
+
+[node name="TestGround20" parent="SecondPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.0307808, -0.101982, 0.384712, -0.00526741, 1.03919, 0.111111, -0.0356623, -0.241513, 0.31564, 6.82608, -20.271, 11.3389)
+
+[node name="TestGround21" parent="SecondPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-0.0424138, -0.206888, 0.205314, -0.0151606, 0.971354, -0.140821, -0.0147725, -0.402873, -0.444964, 0.826077, -20.271, 11.3389)
+
+[node name="TestGround22" parent="SecondPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-0.0601711, 0.330173, 0.0900985, 0.0109683, 1.0176, -0.188434, -0.0200596, -0.433981, -0.373294, -2.17392, -20.271, 11.3389)
+
+[node name="TestGround25" parent="SecondPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.344257, 0, 0, 0, 1.1545, 0, 0, 0, 0.179162, -9.13033, -23.5298, 11.3389)
+
+[node name="TestGround27" parent="SecondPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-3.27353e-08, 0, -0.179162, 0.374448, 0.999827, -3.91571e-09, 0.648564, -0.57725, -6.7822e-09, -11.1303, -25.3115, 8.25292)
+
+[node name="TestGround28" parent="SecondPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-2.31474e-08, -3.5684e-08, -0.179162, -0.193829, 1.11516, -3.91571e-09, 0.723379, 0.298807, -6.7822e-09, -11.1303, -26.2619, 1.49305)
+
+[node name="MapTorch_Dim2" parent="SecondPart" instance=ExtResource("14_mqlep")]
+transform = Transform3D(0.258819, -0.25, 0.933013, 0, 0.965926, 0.258819, -0.965926, -0.0669873, 0.25, 11.5198, -15.9996, 5.16656)
+
+[node name="Interactable" parent="SecondPart/MapTorch_Dim2" index="2"]
+destroy_on_pick = false
+
+[node name="MapTorch_Dim3" parent="SecondPart" instance=ExtResource("14_mqlep")]
+transform = Transform3D(0.173676, 0.484839, -0.857186, -0.351833, 0.843518, 0.405822, 0.91981, 0.231105, 0.317081, -11.6286, -24.3826, 0.0424376)
+
+[node name="Interactable" parent="SecondPart/MapTorch_Dim3" index="2"]
+destroy_on_pick = false
+
+[node name="Trap_Spear_Pressure" parent="SecondPart" instance=ExtResource("13_gnt1b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7417, -26.2913, 2.95117)
+
+[node name="SpearTrap" parent="SecondPart/Trap_Spear_Pressure" index="0"]
+transform = Transform3D(-4.2222e-08, 1, -1.13133e-08, -0.965926, -4.37114e-08, -0.258819, -0.258819, 0, 0.965926, -0.974589, 0.667861, 0.178953)
+
+[node name="Trap_Trigger_Pressure" parent="SecondPart/Trap_Spear_Pressure" index="1"]
+transform = Transform3D(0.878722, 0.0138258, -0.477133, -0.131846, 0.967723, -0.214776, 0.458763, 0.251637, 0.852183, -0.111463, -0.282238, -0.025882)
+
+[node name="TotemSlot" parent="." instance=ExtResource("9_vv5gj")]
+transform = Transform3D(0.427264, -0.00464875, -0.904115, -0.203076, 0.973943, -0.100976, 0.881026, 0.226747, 0.415186, -10.8174, -25.4115, -1.42479)
+id = 1
+
+[node name="SpawnPoint" parent="TotemSlot" index="0"]
+transform = Transform3D(-0.36116, -0.0287078, -0.932062, 0.0745918, 0.995434, -0.059563, 0.929516, -0.091036, -0.357369, 2.39086, 0.542901, 1.27685)
+
+[node name="StoryTrigger" parent="TotemSlot" instance=ExtResource("17_vvjys")]
+transform = Transform3D(0.427263, -0.203076, 0.881026, -0.00464876, 0.973942, 0.226747, -0.904115, -0.100977, 0.415186, 15.8874, 12.5206, -16.0551)
+msg = Array[String](["I can take a risk and carry my totem to revive here..."])
+
+[node name="CollisionShape3D" parent="TotemSlot/StoryTrigger" index="0"]
+transform = Transform3D(1, 3.10193e-24, 0, -5.55112e-16, 1, 0, 0, 0, 1, 0.270264, -0.17572, 0.560547)
+
+[node name="Destroyer" parent="." instance=ExtResource("22_rnsa3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -95.9532, 0)
+collision_mask = 64
+
+[node name="ThirdPart" type="Node3D" parent="."]
+
+[node name="TestGround29" parent="ThirdPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-1.30629e-09, -3.24382e-08, -0.179162, -0.00677427, 1.13696, -3.91571e-09, 0.0384188, 0.200477, -6.7822e-09, -11.1303, -24.9164, -6.13806)
+
+[node name="TestGround30" parent="ThirdPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-1.30629e-09, -3.24382e-08, -0.179162, -0.00677427, 1.13696, -3.91571e-09, 0.0384188, 0.200477, -6.7822e-09, -11.1303, -26.689, -9.38201)
+
+[node name="TestGround32" parent="ThirdPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-0.000374818, -0.00195584, 0.179153, -0.00677427, 1.13696, -3.96329e-09, -0.0384169, -0.200467, -0.00174792, 10.0747, -27.7792, -9.73243)
+
+[node name="TestGround33" parent="ThirdPart" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-0.000374818, -0.00195584, 0.179153, -0.00677427, 1.13696, -3.96329e-09, -0.0384169, -0.200467, -0.00174792, 10.1063, -29.5518, -6.48865)
+
+[node name="Last Part" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.98645, 0)
+
+[node name="TestGround34" parent="Last Part" instance=ExtResource("8_quc0v")]
+transform = Transform3D(2, 0, 0, 0, 1.155, 0, 0, 0, 3, -9.57338, -34.1448, 0.753154)
+
+[node name="TestGround35" parent="Last Part" instance=ExtResource("8_quc0v")]
+transform = Transform3D(2, 0, 0, 0, 1.155, 0, 0, 0, 3, 12.6469, -34.0553, 0.753154)
+
+[node name="TestGround36" parent="Last Part" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-8.74228e-08, 0, 3, 0, 1.155, 0, -2, 0, -1.31134e-07, 12.6469, -34.1496, -6.72558)
+
+[node name="TestGround37" parent="Last Part" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-8.74228e-08, 0, 3, 0, 1.155, 0, -2, 0, -1.31134e-07, 12.6469, -34.108, 14.6893)
+
+[node name="TestGround38" parent="Last Part" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-5.14619e-08, 0, 3, 0, 1.155, 0, -1.17731, 0, -1.31134e-07, 0.251917, -37.7396, -6.36075)
+
+[node name="TestGround39" parent="Last Part" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-5.14619e-08, 0, 3, 0, 1.155, 0, -1.17731, 0, -1.31134e-07, 0.251917, -37.7723, 4.54074)
+
+[node name="TestGround40" parent="Last Part" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-5.14619e-08, 0, 3, 0, 1.155, 0, -1.17731, 0, -1.31134e-07, -5.0742, -37.7835, 14.7309)
+
+[node name="TestGround31" parent="Last Part" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-1.30629e-09, -3.24382e-08, -1.65571, -0.00677427, 1.13696, -3.61866e-08, 0.0384188, 0.200477, -6.26771e-08, -0.0170522, -26.3715, -11.1827)
+
+[node name="MapTorch_Dim" parent="Last Part" instance=ExtResource("14_mqlep")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -11.4563, -37.2215, 3.0782)
+
+[node name="MapTorch_Dim2" parent="Last Part" instance=ExtResource("14_mqlep")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -11.4563, -37.2215, -1.9218)
+
+[node name="MapTorch_Dim3" parent="Last Part" instance=ExtResource("14_mqlep")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -11.4563, -37.2215, -6.9218)
+
+[node name="MapTorch_Dim4" parent="Last Part" instance=ExtResource("14_mqlep")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -11.4563, -37.2215, 7.0782)
+
+[node name="MapTorch_Dim5" parent="Last Part" instance=ExtResource("14_mqlep")]
+transform = Transform3D(-0.965926, -0.258819, 8.74228e-08, -0.258819, 0.965926, 0, -8.44439e-08, -2.26267e-08, -1, 11.5437, -37.2215, -2.4218)
+
+[node name="MapTorch_Dim6" parent="Last Part" instance=ExtResource("14_mqlep")]
+transform = Transform3D(-0.965926, -0.258819, 8.74228e-08, -0.258819, 0.965926, 0, -8.44439e-08, -2.26267e-08, -1, 11.5437, -37.2215, 2.5782)
+
+[node name="MapTorch_Dim7" parent="Last Part" instance=ExtResource("14_mqlep")]
+transform = Transform3D(-0.965926, -0.258819, 8.74228e-08, -0.258819, 0.965926, 0, -8.44439e-08, -2.26267e-08, -1, 11.5437, -37.2215, 7.5782)
+
+[node name="MapTorch_Dim8" parent="Last Part" instance=ExtResource("14_mqlep")]
+transform = Transform3D(-0.965926, -0.258819, 8.74228e-08, -0.258819, 0.965926, 0, -8.44439e-08, -2.26267e-08, -1, 11.5437, -37.2215, -6.4218)
+
+[node name="MapTorch_Dim9" parent="Last Part" instance=ExtResource("14_mqlep")]
+transform = Transform3D(-4.2222e-08, -1.13133e-08, -1, -0.258819, 0.965926, 1.77636e-15, 0.965926, 0.258819, -4.37114e-08, 1.54368, -37.2215, -11.4218)
+
+[node name="OmniLight3D" parent="Last Part/MapTorch_Dim9" index="1"]
+light_energy = 2.0
+omni_range = 5.0
+
+[node name="MapTorch_Dim10" parent="Last Part" instance=ExtResource("14_mqlep")]
+transform = Transform3D(-4.2222e-08, -1.13133e-08, -1, -0.258819, 0.965926, 1.77636e-15, 0.965926, 0.258819, -4.37114e-08, -2.45632, -37.2215, -11.4218)
+
+[node name="OmniLight3D" parent="Last Part/MapTorch_Dim10" index="1"]
+light_energy = 2.0
+omni_range = 5.0
+
+[node name="Amberstone" parent="Last Part" instance=ExtResource("23_toqy5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.589931, -37.0569, -10.805)
+
+[node name="Prisoner" type="Node3D" parent="Last Part"]
+transform = Transform3D(-0.671863, 0, -0.740676, 0, 1, 0, 0.740676, 0, -0.671863, -6.08341, -37.2355, -10.6975)
+
+[node name="Visual" type="MeshInstance3D" parent="Last Part/Prisoner"]
+mesh = SubResource("SphereMesh_8dn5o")
+surface_material_override/0 = SubResource("StandardMaterial3D_1wk7y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Last Part/Prisoner"]
+shape = SubResource("SphereShape3D_e7ehh")
+
+[node name="Eye" type="MeshInstance3D" parent="Last Part/Prisoner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.136939, 0.337231, -0.382866)
+mesh = SubResource("SphereMesh_e7ehh")
+
+[node name="Eye2" type="MeshInstance3D" parent="Last Part/Prisoner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0983843, 0.337231, -0.382866)
+mesh = SubResource("SphereMesh_e7ehh")
+
+[node name="TotemSlot" parent="Last Part" instance=ExtResource("9_vv5gj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.77393, -37.6764, -10.3691)
+id = 2
+
+[node name="Interactable" parent="Last Part/TotemSlot" index="2"]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="Totem_Visual" parent="Last Part/TotemSlot" index="3"]
+visible = true
+
+[node name="Totem" parent="Last Part/TotemSlot/Totem_Visual" index="0"]
+mesh = SubResource("ArrayMesh_of3nu")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Last Part/TotemSlot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.329861, 0.537746, 0.0789242)
+light_color = Color(0, 0.00784314, 1, 1)
+light_energy = 0.1
+omni_range = 0.3
+
+[node name="StoryTrigger" parent="Last Part" instance=ExtResource("17_vvjys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.95575, -37.1794, -10.2691)
+msg = Array[String](["I hope you didn't bring your totem along.", "Whoever crafted this trap clearly has a disturbingly sick sense of humor...."])
+
+[node name="CollisionShape3D" parent="Last Part/StoryTrigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23584, 0, -0.161133)
+
+[node name="TotemSlot2" parent="." instance=ExtResource("9_vv5gj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.08622, -39.6629, -8.57727)
+id = 3
+is_sticky = true
+
+[node name="SpawnPoint" parent="TotemSlot2" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.04144, 0, -0.903272)
+
+[node name="TotemSlot3" parent="." instance=ExtResource("9_vv5gj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.08622, -39.6629, -6.57727)
+id = 4
+is_sticky = true
+
+[node name="SpawnPoint" parent="TotemSlot3" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.09754, 0.0768547, -0.903272)
+
+[node name="TotemSlot5" parent="." instance=ExtResource("9_vv5gj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.08622, -39.6629, -4.57727)
+id = 5
+is_sticky = true
+
+[node name="SpawnPoint" parent="TotemSlot5" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.771146, 0, -0.903272)
+
+[node name="FullScUi" type="CanvasLayer" parent="." node_paths=PackedStringArray("label", "anim")]
+unique_name_in_owner = true
+script = ExtResource("25_8dn5o")
+label = NodePath("FadePanel/Message")
+anim = NodePath("AnimationPlayer")
+metadata/_custom_type_script = "uid://c5hi75n0ij6op"
+
+[node name="FadePanel" type="Panel" parent="FullScUi"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ew37t")
+
+[node name="Message" type="Label" parent="FullScUi/FadePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("25_h0x0q")
+text = "You have died"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FullScUi"]
+libraries = {
+&"": SubResource("AnimationLibrary_of3nu")
+}
+
+[node name="WinArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 23.8584)
+collision_mask = 2
+monitorable = false
+script = ExtResource("27_8dn5o")
+metadata/_custom_type_script = "uid://o7f2bvmev3oc"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WinArea"]
+shape = SubResource("BoxShape3D_ew37t")
 
 [editable path="Outside/TestGround"]
 [editable path="Outside/TestGround2"]
@@ -355,7 +741,21 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 
 [editable path="Outside/TestGround4"]
 [editable path="Outside/TotemSlot"]
 [editable path="Outside/Torch_Story"]
-[editable path="MapTorch"]
-[editable path="MapTorch2"]
-[editable path="Inside/TotemSlot"]
-[editable path="Trap_Spear_Pressure"]
+[editable path="TopPart/MapTorch"]
+[editable path="TopPart/MapTorch2"]
+[editable path="FirstPart/TotemSlot"]
+[editable path="FirstPart/MapTorch_Dim"]
+[editable path="FirstPart/Trap_Spear_Pressure"]
+[editable path="SecondPart/MapTorch_Dim2"]
+[editable path="SecondPart/MapTorch_Dim3"]
+[editable path="SecondPart/Trap_Spear_Pressure"]
+[editable path="TotemSlot"]
+[editable path="TotemSlot/StoryTrigger"]
+[editable path="Last Part/MapTorch_Dim9"]
+[editable path="Last Part/MapTorch_Dim10"]
+[editable path="Last Part/TotemSlot"]
+[editable path="Last Part/TotemSlot/Totem_Visual"]
+[editable path="Last Part/StoryTrigger"]
+[editable path="TotemSlot2"]
+[editable path="TotemSlot3"]
+[editable path="TotemSlot5"]

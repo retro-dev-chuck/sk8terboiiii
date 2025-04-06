@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dyp60p37s8m03"]
+[gd_scene load_steps=11 format=3 uid="uid://dyp60p37s8m03"]
 
 [ext_resource type="Script" uid="uid://dy60oxc7dggtv" path="res://Map/Traps/Triggers/TrapTriggerPressure.gd" id="1_5dq28"]
 [ext_resource type="AudioStream" uid="uid://bj1ajj4cmfdok" path="res://Map/Traps/Triggers/Final_StoneGrind.wav" id="2_1hse8"]
@@ -60,6 +60,9 @@ _data = {
 [sub_resource type="BoxMesh" id="BoxMesh_3msfb"]
 size = Vector3(0.5, 0.02, 0.5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1hse8"]
+albedo_color = Color(0.368627, 0.368627, 0.368627, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_qmxgc"]
 size = Vector3(0.5, 0.02, 0.5)
 
@@ -81,6 +84,7 @@ collision_mask = 15
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D"]
 mesh = SubResource("BoxMesh_3msfb")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_1hse8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
 shape = SubResource("BoxShape3D_qmxgc")

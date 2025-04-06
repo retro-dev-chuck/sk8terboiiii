@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bwmepum2xna3u"]
+[gd_scene load_steps=15 format=3 uid="uid://bwmepum2xna3u"]
 
 [ext_resource type="Script" uid="uid://dovlpcqil45w8" path="res://NotSoCoolPlayer/PlayerMovement.gd" id="1_e6h3x"]
 [ext_resource type="Script" uid="uid://c6yllm45ptqnq" path="res://NotSoCoolPlayer/Interaction/HandSlotHandler.gd" id="2_20335"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://c452pj1ew0q63" path="res://NotSoCoolPlayer/Throw/ItemThrow.gd" id="3_doq3x"]
 [ext_resource type="PackedScene" uid="uid://c0lc0qmibeump" path="res://NotSoCoolPlayer/Torch/Pre_Throwable_Torch.tscn" id="4_bf3la"]
 [ext_resource type="PackedScene" uid="uid://cj84b5xyaduc3" path="res://Map/Totem/Pre_TotemVisual.tscn" id="7_bf3la"]
+[ext_resource type="PackedScene" uid="uid://c4r10ltghu76t" path="res://Map/Interactable/Amberstone.glb" id="8_nyfgu"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_e6h3x"]
 radius = 0.3
@@ -48,7 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.623747, 0)
 light_energy = 0.01
 light_size = 0.742
 
-[node name="HandSlotHandler" type="Node3D" parent="." node_paths=PackedStringArray("item_throw", "interaction_right", "interaction_left", "torch_right", "torch_left", "totem_left", "totem_right")]
+[node name="HandSlotHandler" type="Node3D" parent="." node_paths=PackedStringArray("item_throw", "interaction_right", "interaction_left", "torch_right", "torch_left", "totem_left", "totem_right", "amber_left", "amber_right")]
 script = ExtResource("2_20335")
 item_throw = NodePath("../ItemThrow")
 interaction_right = NodePath("../CameraOrigin/Interaction_Right")
@@ -57,6 +58,8 @@ torch_right = NodePath("../Torch_Right")
 torch_left = NodePath("../Torch_Left")
 totem_left = NodePath("../Totem_Left")
 totem_right = NodePath("../Totem_Right")
+amber_left = NodePath("../Amberstone_Left")
+amber_right = NodePath("../Amberstone_Right")
 metadata/_custom_type_script = "uid://c6yllm45ptqnq"
 
 [node name="ItemThrow" type="Node3D" parent="." node_paths=PackedStringArray("player")]
@@ -134,4 +137,12 @@ visible = false
 
 [node name="Totem_Left" parent="." instance=ExtResource("7_bf3la")]
 transform = Transform3D(0.677621, 0, -0.735412, 0, 1, 0, 0.735412, 0, 0.677621, -0.604541, 0, -0.725286)
+visible = false
+
+[node name="Amberstone_Right" parent="." instance=ExtResource("8_nyfgu")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.770184, 0, -1.06613)
+visible = false
+
+[node name="Amberstone_Left" parent="." instance=ExtResource("8_nyfgu")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.945415, 0, -1.06613)
 visible = false

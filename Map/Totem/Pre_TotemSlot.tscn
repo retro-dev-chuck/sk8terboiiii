@@ -30,3 +30,4 @@ metadata/_custom_type_script = "uid://c8wspo72qo5ys"
 shape = SubResource("SphereShape3D_uqpeo")
 
 [node name="Totem_Visual" parent="." instance=ExtResource("4_8d62n")]
+visible = false

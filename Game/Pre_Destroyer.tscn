@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://0cabqvd142jj"]
+
+[ext_resource type="Script" uid="uid://btr04dvbt0owf" path="res://Game/Destroyer.gd" id="1_h7klh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_toqy5"]
+size = Vector3(33.1807, 55.9146, 29.5234)
+
+[node name="Destroyer" type="Area3D"]
+script = ExtResource("1_h7klh")
+metadata/_custom_type_script = "uid://btr04dvbt0owf"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -21.946, 0)
+shape = SubResource("BoxShape3D_toqy5")

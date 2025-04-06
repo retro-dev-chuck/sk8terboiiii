@@ -10,6 +10,7 @@
 radius = 0.7
 
 [node name="Throwable_Torch" type="RigidBody3D" node_paths=PackedStringArray("lifetime", "interactable", "light", "pfx")]
+collision_layer = 65
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0.85, 0)
 script = ExtResource("1_2f5g1")

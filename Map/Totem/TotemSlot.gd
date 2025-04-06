@@ -1,8 +1,11 @@
 class_name TotemSlot extends Node3D
 
+@export var id: int = 0
+
 @export var spawn_point: Node3D
 @export var has_totem: bool = false
 @export var totem_visual: Node3D
+@export var is_sticky: bool = false
 
 func _ready() -> void:
 	if has_totem:

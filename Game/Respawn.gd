@@ -9,3 +9,7 @@ func spawn() -> void:
 	player.global_basis = Events.slot.spawn_point.global_basis
 	player.has_died = false
 	State.is_player_dead = false
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("Restart"):
+		get_tree().reload_current_scene()
