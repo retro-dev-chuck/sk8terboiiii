@@ -39,12 +39,6 @@ fog_light_energy = 0.1
 fog_density = 0.075
 fog_sky_affect = 0.9
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_snvxv"]
-size = Vector3(9.92285, 1000, 3.467)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_3xbkl"]
-size = Vector3(30.4009, 1000, 3.467)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0x0q"]
 albedo_texture = ExtResource("10_rnsa3")
 normal_enabled = true
@@ -53,6 +47,12 @@ uv1_scale = Vector3(40, 40, 40)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vvjys"]
 size = Vector3(10, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_snvxv"]
+size = Vector3(9.92285, 1000, 3.467)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3xbkl"]
+size = Vector3(30.4009, 1000, 3.467)
 
 [node name="Game" type="Node3D"]
 
@@ -76,6 +76,138 @@ speed = 5.0
 sprint_speed = 6.5
 jump_velocity = 6.5
 coyote_time_length_ms = 30.0
+
+[node name="Outside" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30.0012)
+
+[node name="Tree" parent="Outside" instance=ExtResource("19_3xbkl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96902, 0, 0)
+
+[node name="Tree2" parent="Outside" instance=ExtResource("19_3xbkl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.68021, 0, -4.3762)
+
+[node name="Tree3" parent="Outside" instance=ExtResource("19_3xbkl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.76462, 0, -11.4045)
+
+[node name="Tree4" parent="Outside" instance=ExtResource("19_3xbkl")]
+transform = Transform3D(0.896789, 0, 0, 0, 1, 0, 0, 0, 1.181, 11.7519, 0, -10.6085)
+
+[node name="Tree5" parent="Outside" instance=ExtResource("19_3xbkl")]
+transform = Transform3D(0.942771, 0.0293697, 0, -0.0277008, 0.999569, 0, 0, 0, 1.15846, 10.6897, 0, -5.43616)
+
+[node name="Tree6" parent="Outside" instance=ExtResource("19_3xbkl")]
+transform = Transform3D(0.942771, 0.0293697, 0, -0.0277008, 0.999569, 0, 0, 0, 1.15846, 9.85869, 0, 2.55667)
+
+[node name="Tree7" parent="Outside" instance=ExtResource("19_3xbkl")]
+transform = Transform3D(0.942771, 0.0293697, 0, -0.0277008, 0.999569, 0, 0, 0, 1.15846, -6.90438, 0, 4.17591)
+
+[node name="Foliage" parent="Outside" instance=ExtResource("22_2gtoj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.076, -0.0500008, 4.89341)
+
+[node name="Foliage2" parent="Outside" instance=ExtResource("22_2gtoj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.076, -0.0500008, -2.10659)
+
+[node name="Foliage3" parent="Outside" instance=ExtResource("22_2gtoj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.27975, -0.0500008, 1.14867)
+
+[node name="Foliage4" parent="Outside" instance=ExtResource("22_2gtoj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0203, -0.0500008, -7.19865)
+
+[node name="Foliage5" parent="Outside" instance=ExtResource("22_2gtoj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0203, -0.0500008, 5.80135)
+
+[node name="Foliage6" parent="Outside" instance=ExtResource("22_2gtoj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.61352, -0.0500008, 6.83229)
+
+[node name="Foliage7" parent="Outside" instance=ExtResource("22_2gtoj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.06364, -0.0500008, -7.03763)
+
+[node name="Foliage8" parent="Outside" instance=ExtResource("22_2gtoj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.14452, -0.0500008, -9.39584)
+
+[node name="Foliage9" parent="Outside" instance=ExtResource("22_2gtoj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92118, -0.0428644, -13.5549)
+
+[node name="TestGround" parent="Outside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(6.29519, 0, 0, 0, 1, 0, 0, 0, 4.38153, 0, -0.1, 5.69984)
+
+[node name="TestGround" parent="Outside/TestGround" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
+
+[node name="TestGround2" parent="Outside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(2, 0.866025, 0, -3.4641, 0.5, 0, 0, 0, 4, -20.5306, -0.1, 5.69984)
+
+[node name="TestGround" parent="Outside/TestGround2" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
+
+[node name="TestGround5" parent="Outside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.517638, 0.224144, 3.8637, -3.4641, 0.5, 0, -1.93185, -0.836516, 1.03528, -15.2403, -0.1, 9.99137)
+
+[node name="TestGround" parent="Outside/TestGround5" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
+
+[node name="TestGround6" parent="Outside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-0.517638, -0.224144, 3.8637, -3.4641, 0.5, 0, -1.93185, -0.836516, -1.03528, 4.98269, -0.1, 9.97701)
+
+[node name="TestGround" parent="Outside/TestGround6" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
+
+[node name="TestGround7" parent="Outside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-0.96945, -0.937422, -1, -3.84606, 0.266456, -0.267949, 0.517638, 0.224144, -3.8637, 21.4984, -0.1, 0.25638)
+
+[node name="TestGround" parent="Outside/TestGround7" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
+
+[node name="TestGround8" parent="Outside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-0.319479, -0.504364, -3.43916, -3.84607, 0.266456, -0.267949, 1.05153, 0.821351, -2.02494, 30.144, -0.0999981, -13.0192)
+
+[node name="TestGround" parent="Outside/TestGround8" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
+
+[node name="TestGround3" parent="Outside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(1.73205, 0.75, -2, -3.4641, 0.5, 0, 1, 0.433013, 3.4641, -23.235, -0.0999971, 2.38871)
+
+[node name="TestGround" parent="Outside/TestGround3" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
+
+[node name="TestGround4" parent="Outside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.517638, 0.224144, -3.8637, -3.4641, 0.5, 0, 1.93185, 0.836516, 1.03528, -32.1866, -0.0999971, -4.90832)
+
+[node name="TestGround" parent="Outside/TestGround4" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
+
+[node name="TotemSlot" parent="Outside" instance=ExtResource("9_vv5gj")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 3.70294, -0.0445462, -11.9411)
+has_totem = true
+
+[node name="SpawnPoint" parent="Outside/TotemSlot" index="0"]
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 3.40654, 0.452491, -1.87671)
+
+[node name="Story_CanvasLayer" parent="Outside" instance=ExtResource("15_enflg")]
+unique_name_in_owner = true
+
+[node name="Intro_Story" type="Node" parent="Outside" node_paths=PackedStringArray("ui")]
+script = ExtResource("16_4bmmj")
+ui = NodePath("../Story_CanvasLayer")
+metadata/_custom_type_script = "uid://cvjxliomyamki"
+
+[node name="Totem_StoryTrigger" parent="Outside" instance=ExtResource("17_vvjys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.71885, 0, -11.9101)
+msg = Array[String](["Resurrection totem...", "I can take it with me, but if I die when it's not at an altar", "I will die for good..."])
+
+[node name="Torch_Story" parent="Outside" instance=ExtResource("17_vvjys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0236664, 0, -16.5628)
+msg = Array[String](["I should take a torch with me"])
+
+[node name="CollisionShape3D" parent="Outside/Torch_Story" index="0"]
+shape = SubResource("BoxShape3D_vvjys")
+
+[node name="Tutorial_Book" parent="Outside" instance=ExtResource("18_snvxv")]
+transform = Transform3D(0.462566, 0, -0.324434, 0, 0.565, 0, 0.324434, 0, 0.462566, -3.0274, -0.0355768, -10.9994)
+
+[node name="StoryTrigger" parent="Outside/Tutorial_Book" instance=ExtResource("17_vvjys")]
+msg = Array[String](["LMB: Use left hand        RMB: Use Right Hand", "If hand is empty, pick the item. If holding an item, throw it forward", "Hold Shift: Sprint", "Torches of the dungeon are magical, until you take them off the wall"])
+is_repeatable = true
 
 [node name="Walls" parent="." instance=ExtResource("2_pa8ys")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0)
@@ -130,69 +262,6 @@ transform = Transform3D(-1, 0, -7.15295e-08, 0, 1, 0, 7.15295e-08, 0, -1, 0.1746
 transform = Transform3D(0.999994, 0, 3.58824e-13, 0, 1, 0, -3.58824e-13, 0, 0.999994, -0.210962, 0, 13.2788)
 shape = SubResource("BoxShape3D_3xbkl")
 
-[node name="TotemSlot" parent="." instance=ExtResource("9_vv5gj")]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 3.70294, -0.0445462, 18.0601)
-has_totem = true
-
-[node name="SpawnPoint" parent="TotemSlot" index="0"]
-transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 3.40654, 0.452491, -1.87671)
-
-[node name="TestGround" parent="." instance=ExtResource("8_quc0v")]
-transform = Transform3D(6.29519, 0, 0, 0, 1, 0, 0, 0, 4.38153, 0, -0.1, 35.7011)
-
-[node name="TestGround" parent="TestGround" index="1"]
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
-
-[node name="TestGround2" parent="." instance=ExtResource("8_quc0v")]
-transform = Transform3D(2, 0.866025, 0, -3.4641, 0.5, 0, 0, 0, 4, -20.5306, -0.1, 35.7011)
-
-[node name="TestGround" parent="TestGround2" index="1"]
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
-
-[node name="TestGround5" parent="." instance=ExtResource("8_quc0v")]
-transform = Transform3D(0.517638, 0.224144, 3.8637, -3.4641, 0.5, 0, -1.93185, -0.836516, 1.03528, -15.2403, -0.1, 39.9926)
-
-[node name="TestGround" parent="TestGround5" index="1"]
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
-
-[node name="TestGround6" parent="." instance=ExtResource("8_quc0v")]
-transform = Transform3D(-0.517638, -0.224144, 3.8637, -3.4641, 0.5, 0, -1.93185, -0.836516, -1.03528, 4.98269, -0.1, 39.9783)
-
-[node name="TestGround" parent="TestGround6" index="1"]
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
-
-[node name="TestGround7" parent="." instance=ExtResource("8_quc0v")]
-transform = Transform3D(-0.96945, -0.937422, -1, -3.84606, 0.266456, -0.267949, 0.517638, 0.224144, -3.8637, 21.4984, -0.1, 30.2576)
-
-[node name="TestGround" parent="TestGround7" index="1"]
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
-
-[node name="TestGround8" parent="." instance=ExtResource("8_quc0v")]
-transform = Transform3D(-0.319479, -0.504364, -3.43916, -3.84607, 0.266456, -0.267949, 1.05153, 0.821351, -2.02494, 30.144, -0.0999981, 16.9821)
-
-[node name="TestGround" parent="TestGround8" index="1"]
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
-
-[node name="TestGround3" parent="." instance=ExtResource("8_quc0v")]
-transform = Transform3D(1.73205, 0.75, -2, -3.4641, 0.5, 0, 1, 0.433013, 3.4641, -23.235, -0.0999971, 32.39)
-
-[node name="TestGround" parent="TestGround3" index="1"]
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
-
-[node name="TestGround4" parent="." instance=ExtResource("8_quc0v")]
-transform = Transform3D(0.517638, 0.224144, -3.8637, -3.4641, 0.5, 0, 1.93185, 0.836516, 1.03528, -32.1866, -0.0999971, 25.0929)
-
-[node name="TestGround" parent="TestGround4" index="1"]
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_h0x0q")
-
 [node name="Inside" type="Node3D" parent="."]
 
 [node name="TestGround2" parent="Inside" instance=ExtResource("8_quc0v")]
@@ -237,6 +306,21 @@ transform = Transform3D(7.45058e-09, 0, -0.0674444, 0, 1.07175, 0, 0.183503, 0, 
 [node name="TestGround14" parent="Inside" instance=ExtResource("8_quc0v")]
 transform = Transform3D(0.403706, 0, -3.26424e-09, 0, 1.07175, 0, -3.40378e-08, 0, 0.283267, 2.76496, -13.037, 10.1808)
 
+[node name="TestGround15" parent="Inside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.121112, 0, -9.79273e-10, 0, 1.07175, 0, -1.02113e-08, 0, 0.08498, 8.89235, -13.037, 10.1622)
+
+[node name="TestGround16" parent="Inside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.218001, 0, -5.09222e-09, 0, 1.07175, 0, -1.83804e-08, 0, 0.441896, 10.5924, -13.037, 9.16224)
+
+[node name="TotemSlot" parent="Inside" instance=ExtResource("9_vv5gj")]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 10.7578, -12.9779, 7.825)
+
+[node name="SpawnPoint" parent="Inside/TotemSlot" index="0"]
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 2.33725, 0, -0.394046)
+
+[node name="Totem_Visual" parent="Inside/TotemSlot" index="3"]
+visible = false
+
 [node name="Camp" type="Node3D" parent="."]
 
 [node name="Foliage" parent="Camp" instance=ExtResource("8_kgoo8")]
@@ -261,93 +345,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.641541)
 [node name="MapTorch_Dim" parent="." instance=ExtResource("14_mqlep")]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 2.95641, -11.8567, 11.5958)
 
-[node name="Story_CanvasLayer" parent="." instance=ExtResource("15_enflg")]
-unique_name_in_owner = true
-
-[node name="Intro_Story" type="Node" parent="." node_paths=PackedStringArray("ui")]
-script = ExtResource("16_4bmmj")
-ui = NodePath("../Story_CanvasLayer")
-metadata/_custom_type_script = "uid://cvjxliomyamki"
-
-[node name="Totem_StoryTrigger" parent="." instance=ExtResource("17_vvjys")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.71885, 0, 18.0911)
-msg = Array[String](["Resurrection totem...", "I can take it with me, but if I die when it's not at an altar", "I will die for good..."])
-
-[node name="Torch_Story" parent="." instance=ExtResource("17_vvjys")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0236664, 0, 13.4384)
-msg = Array[String](["I should take a torch with me"])
-
-[node name="CollisionShape3D" parent="Torch_Story" index="0"]
-shape = SubResource("BoxShape3D_vvjys")
-
-[node name="Tutorial_Book" parent="." instance=ExtResource("18_snvxv")]
-transform = Transform3D(0.462566, 0, -0.324434, 0, 0.565, 0, 0.324434, 0, 0.462566, -3.0274, -0.0355768, 19.0019)
-
-[node name="StoryTrigger" parent="Tutorial_Book" instance=ExtResource("17_vvjys")]
-msg = Array[String](["LMB: Use left hand        RMB: Use Right Hand", "If hand is empty, pick the item. If holding an item, throw it forward", "Hold Shift: Sprint", "Torches of the dungeon are magical, until you take them off the wall"])
-is_repeatable = true
-
-[node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30.0012)
-
-[node name="Tree" parent="Node3D" instance=ExtResource("19_3xbkl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96902, 0, 0)
-
-[node name="Tree2" parent="Node3D" instance=ExtResource("19_3xbkl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.68021, 0, -4.3762)
-
-[node name="Tree3" parent="Node3D" instance=ExtResource("19_3xbkl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.76462, 0, -11.4045)
-
-[node name="Tree4" parent="Node3D" instance=ExtResource("19_3xbkl")]
-transform = Transform3D(0.896789, 0, 0, 0, 1, 0, 0, 0, 1.181, 11.7519, 0, -10.6085)
-
-[node name="Tree5" parent="Node3D" instance=ExtResource("19_3xbkl")]
-transform = Transform3D(0.942771, 0.0293697, 0, -0.0277008, 0.999569, 0, 0, 0, 1.15846, 10.6897, 0, -5.43616)
-
-[node name="Tree6" parent="Node3D" instance=ExtResource("19_3xbkl")]
-transform = Transform3D(0.942771, 0.0293697, 0, -0.0277008, 0.999569, 0, 0, 0, 1.15846, 9.85869, 0, 2.55667)
-
-[node name="Tree7" parent="Node3D" instance=ExtResource("19_3xbkl")]
-transform = Transform3D(0.942771, 0.0293697, 0, -0.0277008, 0.999569, 0, 0, 0, 1.15846, -6.90438, 0, 4.17591)
-
-[node name="Foliage" parent="." instance=ExtResource("22_2gtoj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.076, -0.0500008, 34.8947)
-
-[node name="Foliage2" parent="." instance=ExtResource("22_2gtoj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.076, -0.0500008, 27.8947)
-
-[node name="Foliage3" parent="." instance=ExtResource("22_2gtoj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.27975, -0.0500008, 31.1499)
-
-[node name="Foliage4" parent="." instance=ExtResource("22_2gtoj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0203, -0.0500008, 22.8026)
-
-[node name="Foliage5" parent="." instance=ExtResource("22_2gtoj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0203, -0.0500008, 35.8026)
-
-[node name="Foliage6" parent="." instance=ExtResource("22_2gtoj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.61352, -0.0500008, 36.8335)
-
-[node name="Foliage7" parent="." instance=ExtResource("22_2gtoj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.06364, -0.0500008, 22.9636)
-
-[node name="Foliage8" parent="." instance=ExtResource("22_2gtoj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.14452, -0.0500008, 20.6054)
-
-[node name="Foliage9" parent="." instance=ExtResource("22_2gtoj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.92118, -0.0428644, 16.4464)
-
+[editable path="Outside/TestGround"]
+[editable path="Outside/TestGround2"]
+[editable path="Outside/TestGround5"]
+[editable path="Outside/TestGround6"]
+[editable path="Outside/TestGround7"]
+[editable path="Outside/TestGround8"]
+[editable path="Outside/TestGround3"]
+[editable path="Outside/TestGround4"]
+[editable path="Outside/TotemSlot"]
+[editable path="Outside/Torch_Story"]
 [editable path="MapTorch"]
 [editable path="MapTorch2"]
-[editable path="TotemSlot"]
-[editable path="TestGround"]
-[editable path="TestGround2"]
-[editable path="TestGround5"]
-[editable path="TestGround6"]
-[editable path="TestGround7"]
-[editable path="TestGround8"]
-[editable path="TestGround3"]
-[editable path="TestGround4"]
+[editable path="Inside/TotemSlot"]
 [editable path="Trap_Spear_Pressure"]
-[editable path="Torch_Story"]
