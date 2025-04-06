@@ -5,6 +5,7 @@ enum ItemType {
 	Torch = 1,
 	Campfire = 2,
 	ResurrectionTotem = 3,
+	TotemSlot = 4,
 }
 
 enum Hand {

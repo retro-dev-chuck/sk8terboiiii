@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://5ceo6vrf8qs2"]
+
+[ext_resource type="Script" uid="uid://dtohj6tcmltoh" path="res://Map/EnvTotem.gd" id="1_iq00u"]
+[ext_resource type="Script" uid="uid://c8wspo72qo5ys" path="res://Map/Interactable/Interactable.gd" id="2_iq00u"]
+[ext_resource type="PackedScene" uid="uid://cj84b5xyaduc3" path="res://Map/Totem/Pre_TotemVisual.tscn" id="2_np34v"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lfiho"]
+
+[node name="EnvTotem" type="Node3D" node_paths=PackedStringArray("interactable")]
+script = ExtResource("1_iq00u")
+interactable = NodePath("Interactable")
+metadata/_custom_type_script = "uid://dtohj6tcmltoh"
+
+[node name="Totem_Visual" parent="." instance=ExtResource("2_np34v")]
+
+[node name="Interactable" type="Area3D" parent="."]
+script = ExtResource("2_iq00u")
+metadata/_custom_type_script = "uid://c8wspo72qo5ys"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.400056, 0)
+shape = SubResource("SphereShape3D_lfiho")

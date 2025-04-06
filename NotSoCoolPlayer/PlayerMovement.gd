@@ -15,11 +15,17 @@ var input_dir: Vector2 = Vector2.ZERO
 var has_jump: bool = false
 var was_grounded: bool = false
 var ground_leave_time_start: float
+var last_ground_height: float 
+
+var has_died: bool = false
 
 func _ready() -> void:
+	last_ground_height = global_position.y
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event: InputEvent) -> void:
+	if has_died:
+		return
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x * sensitivity))
 		pivot.rotate_x(deg_to_rad(-event.relative.y * sensitivity))
@@ -28,6 +34,12 @@ func _input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Quit"):
 		get_tree().quit()
+		
+	if has_died:
+		return
+		
+	if is_on_floor():
+		last_ground_height = global_position.y
 		
 	if not has_jump and is_on_floor():
 		has_jump = true

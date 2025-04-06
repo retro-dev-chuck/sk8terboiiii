@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctxt2wv1462sq"]
+
+[ext_resource type="PackedScene" uid="uid://cytxjssbh0n31" path="res://Map/Totem/Totem_Slot.glb" id="1_hu6bw"]
+
+[node name="Totem_Slot" instance=ExtResource("1_hu6bw")]

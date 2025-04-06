@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://c007jhi43ya1i"]
+
+[ext_resource type="Script" uid="uid://cascdyo4xtf8y" path="res://Map/Totem/TotemSlot.gd" id="1_ha1te"]
+[ext_resource type="PackedScene" uid="uid://ctxt2wv1462sq" path="res://Map/Totem/Pre_TotemSlotVisual.tscn" id="2_8d62n"]
+[ext_resource type="Script" uid="uid://c8wspo72qo5ys" path="res://Map/Interactable/Interactable.gd" id="2_ha1te"]
+[ext_resource type="PackedScene" uid="uid://cj84b5xyaduc3" path="res://Map/Totem/Pre_TotemVisual.tscn" id="4_8d62n"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uqpeo"]
+
+[node name="TotemSlot" type="Node3D" node_paths=PackedStringArray("spawn_point", "totem_visual")]
+script = ExtResource("1_ha1te")
+spawn_point = NodePath("SpawnPoint")
+totem_visual = NodePath("Totem_Visual")
+metadata/_custom_type_script = "uid://cascdyo4xtf8y"
+
+[node name="SpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.903272)
+
+[node name="Totem_Slot" parent="." instance=ExtResource("2_8d62n")]
+
+[node name="Interactable" type="Area3D" parent="." node_paths=PackedStringArray("free_parent")]
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("2_ha1te")
+type = 4
+free_parent = NodePath("..")
+metadata/_custom_type_script = "uid://c8wspo72qo5ys"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+shape = SubResource("SphereShape3D_uqpeo")
+
+[node name="Totem_Visual" parent="." instance=ExtResource("4_8d62n")]

@@ -33,6 +33,25 @@ func _input(_event: InputEvent) -> void:
 					##else throw
 					else:
 						_try_throw_item()
+				elif type == Enums.ItemType.TotemSlot:
+					var slot: TotemSlot = interactable.free_parent as TotemSlot
+					if slot:
+						print("e")
+						if slot.has_totem:
+							if hand_slot_handler.is_side_empty(side):
+								print("A")
+								on_interaction_successful.emit(interactable)
+							else:##hand full can't take totem
+								print("b")
+								pass
+						else: ##slot doesn't have totem
+							if hand_slot_handler.is_side_empty(side):
+								print("c")
+								pass ##hand empty so do nothing
+							else:
+								print("d")
+								on_interaction_successful.emit(interactable)
+								
 		else: ##No interactable object -> if hand full throw item
 			_try_throw_item()	
 					
