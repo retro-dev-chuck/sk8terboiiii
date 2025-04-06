@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b6nwq01uxjmcb"]
+[gd_scene load_steps=16 format=3 uid="uid://b6nwq01uxjmcb"]
 
 [ext_resource type="Script" uid="uid://bc8q2bpqccab8" path="res://Game/Respawn.gd" id="1_kgoo8"]
 [ext_resource type="PackedScene" uid="uid://bwmepum2xna3u" path="res://NotSoCoolPlayer/Pre_Player.tscn" id="1_t8k4y"]
@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://8v55anliqytv" path="res://Environment/Pre_Campfire.tscn" id="7_kgoo8"]
 [ext_resource type="Texture2D" uid="uid://cko0yfrfelf1g" path="res://Environment/Sky.png" id="7_rw5j3"]
 [ext_resource type="PackedScene" uid="uid://dts7buxkebqnu" path="res://Environment/Foliage.glb" id="8_kgoo8"]
+[ext_resource type="PackedScene" uid="uid://tdcrfae2q3mb" path="res://Map/Platforms/Pre_Platform.tscn" id="8_quc0v"]
 [ext_resource type="PackedScene" uid="uid://c007jhi43ya1i" path="res://Map/Totem/Pre_TotemSlot.tscn" id="9_vv5gj"]
+[ext_resource type="PackedScene" uid="uid://6lf0av5d2gda" path="res://NotSoCoolPlayer/Torch/Pre_PlayerTorch.tscn" id="11_6vy5n"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kgoo8"]
 panorama = ExtResource("7_rw5j3")
@@ -26,15 +28,6 @@ fog_light_color = Color(0.108221, 0.115645, 0.126783, 1)
 fog_light_energy = 0.1
 fog_density = 0.075
 fog_sky_affect = 0.9
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_t8k4y"]
-size = Vector3(10, 0.1, 10)
-
-[sub_resource type="BoxMesh" id="BoxMesh_t8k4y"]
-size = Vector3(10, 0.1, 10)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pa8ys"]
-albedo_color = Color(0.370364, 0.370364, 0.370364, 1)
 
 [node name="Game" type="Node3D"]
 
@@ -62,104 +55,14 @@ coyote_time_length_ms = 100.0
 [node name="Walls" parent="." instance=ExtResource("2_pa8ys")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 0)
 
+[node name="MapTorch" parent="." instance=ExtResource("3_v3iej")]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -4.916, 2, 13.581)
+
+[node name="MapTorch2" parent="." instance=ExtResource("3_v3iej")]
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 4.784, 2, 13.581)
+
 [node name="TopPart" parent="." instance=ExtResource("3_ekh0v")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="TestGround" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 19.9151)
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestGround"]
-shape = SubResource("BoxShape3D_t8k4y")
-
-[node name="TestGround" type="MeshInstance3D" parent="TestGround"]
-mesh = SubResource("BoxMesh_t8k4y")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_pa8ys")
-
-[node name="TestGround2" type="StaticBody3D" parent="."]
-transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 0.5, 0, -3, 9.91509)
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestGround2"]
-shape = SubResource("BoxShape3D_t8k4y")
-
-[node name="TestGround" type="MeshInstance3D" parent="TestGround2"]
-mesh = SubResource("BoxMesh_t8k4y")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_pa8ys")
-
-[node name="MapTorch" parent="TestGround2" instance=ExtResource("3_v3iej")]
-transform = Transform3D(0.5, 0.866026, 0, -0.866026, 0.5, 0, 0, 0, 2, -1.58123, 6.88236, 6.6286)
-
-[node name="MapTorch2" parent="TestGround2" instance=ExtResource("3_v3iej")]
-transform = Transform3D(-1, 3.57628e-07, -1.51421e-07, 1.49012e-07, 1, 8.74228e-08, 7.57104e-08, 4.37114e-08, -2, 7.07902, 1.88236, 6.6286)
-
-[node name="TestGround3" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, -8, -5, 9.91509)
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestGround3"]
-shape = SubResource("BoxShape3D_t8k4y")
-
-[node name="TestGround" type="MeshInstance3D" parent="TestGround3"]
-mesh = SubResource("BoxMesh_t8k4y")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_pa8ys")
-
-[node name="TestGround4" type="StaticBody3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.5, -11, -5, 2.91509)
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestGround4"]
-shape = SubResource("BoxShape3D_t8k4y")
-
-[node name="TestGround" type="MeshInstance3D" parent="TestGround4"]
-mesh = SubResource("BoxMesh_t8k4y")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_pa8ys")
-
-[node name="TestGround5" type="StaticBody3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 1, 0, 0, 0, 0.2, -11, -5, -4.6019)
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestGround5"]
-shape = SubResource("BoxShape3D_t8k4y")
-
-[node name="TestGround" type="MeshInstance3D" parent="TestGround5"]
-mesh = SubResource("BoxMesh_t8k4y")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_pa8ys")
-
-[node name="TestGround6" type="StaticBody3D" parent="."]
-transform = Transform3D(1.14522, 0.198659, 0, -0.30686, 0.741407, 0, 0, 0, 0.2, -6, -8, -9.6019)
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestGround6"]
-shape = SubResource("BoxShape3D_t8k4y")
-
-[node name="TestGround" type="MeshInstance3D" parent="TestGround6"]
-mesh = SubResource("BoxMesh_t8k4y")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_pa8ys")
-
-[node name="TestGround7" type="StaticBody3D" parent="."]
-transform = Transform3D(0.991759, -0.00358017, 0.147039, -0.345254, 0.0269309, 0.420695, -0.0262743, -0.48902, 0.0220917, -5.21164, -7.96129, -8.59777)
-collision_mask = 3
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestGround7"]
-shape = SubResource("BoxShape3D_t8k4y")
-
-[node name="TestGround" type="MeshInstance3D" parent="TestGround7"]
-mesh = SubResource("BoxMesh_t8k4y")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_pa8ys")
-
-[node name="Foliage" parent="." instance=ExtResource("8_kgoo8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.68908, -0.0499993, 13.17)
-
-[node name="Campfire" parent="." instance=ExtResource("7_kgoo8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8995, 0.229576, 19.7419)
 
 [node name="TotemSlot" parent="." instance=ExtResource("9_vv5gj")]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 3.70294, -0.0445462, 18.0601)
@@ -167,5 +70,49 @@ has_totem = true
 
 [node name="SpawnPoint" parent="TotemSlot" index="0"]
 transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 3.40654, 0, -1.87671)
+
+[node name="Inside" type="Node3D" parent="."]
+
+[node name="TestGround" parent="Inside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 19.9151)
+
+[node name="TestGround2" parent="Inside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 0, 0, 0.3, 0.4, -1.7, 9.99213)
+
+[node name="TestGround3" parent="Inside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.740449, -0.0826944, 0, 0.0647809, 0.945201, 0, 0, 0, 0.225, -7.8, -3.7, 10.8921)
+
+[node name="TestGround4" parent="Inside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-0.000247404, -0.00720719, -0.224994, 0.192612, 0.916373, -0.00167013, 0.717887, -0.245869, 0.000370563, -10.8, -5, 3.89213)
+
+[node name="TestGround5" parent="Inside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-8.95493e-05, -0.008141, -0.224808, 0.0697169, 1.0351, -0.00166875, 0.259844, -0.277725, 0.000370258, -10.7976, -6.89232, -3.16077)
+
+[node name="TestGround6" parent="Inside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(-0.00015467, -0.00560948, -0.225253, 0.120415, 0.713229, -0.00167205, 0.448804, -0.191364, 0.000370989, -10.3458, -8.57992, -9.46386)
+
+[node name="MapTorch3" parent="Inside" instance=ExtResource("3_v3iej")]
+transform = Transform3D(0.977616, 0, 0, 0, 1.02703, -0.258819, 0, 0.275192, 0.965926, 0.421062, -8.90803, -11.4692)
+
+[node name="TestGround7" parent="Inside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.624158, 0, 0, 0, 1.07175, 0, 0, 0, 0.224815, -2.51857, -9.33909, -10.5663)
+
+[node name="TestGround8" parent="Inside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0.436911, 0, 0, 0, 1.07175, 0, 0, 0, 0.0674444, 6.21965, -9.33909, -10.4314)
+
+[node name="TestGround9" parent="Inside" instance=ExtResource("8_quc0v")]
+transform = Transform3D(0, 0, -0.0674444, -0.149432, 1.00711, 0, 0.410562, 0.366559, 0, 7.76436, -10.0441, -8.10633)
+
+[node name="Camp" type="Node3D" parent="."]
+
+[node name="Foliage" parent="Camp" instance=ExtResource("8_kgoo8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.68908, -0.0499993, 13.17)
+
+[node name="Campfire" parent="Camp" instance=ExtResource("7_kgoo8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8995, 0.229576, 19.7419)
+
+[node name="Torch" parent="." instance=ExtResource("11_6vy5n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, -3.55087, 9.72151)
+visible = false
 
 [editable path="TotemSlot"]

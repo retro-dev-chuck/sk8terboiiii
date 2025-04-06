@@ -91,12 +91,9 @@ func _handle_totem_slot_right(slot: TotemSlot) -> void:
 						
 func is_side_empty(side: Enums.Hand) -> bool:
 	if side == Enums.Hand.Left:
-		push_warning("Left hand used", left_hand_item == Enums.ItemType.None)
 		return left_hand_item == Enums.ItemType.None
 	if side == Enums.Hand.Right:
-		push_warning("Right hand used", left_hand_item == Enums.ItemType.None)
 		return right_hand_item == Enums.ItemType.None
-	push_warning("None hand used?", side)
 	return false
 
 func throw_item(side: Enums.Hand) -> void:
